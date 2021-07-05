@@ -13,5 +13,5 @@ export const Hero = ({ title }: { title: string }) => (
 )
 
 Hero.defaultProps = {
-  title: 'Edital do BB &#128366;',
+  title: 'Edital do BB 📖',
 }
