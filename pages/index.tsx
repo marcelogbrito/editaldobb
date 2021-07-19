@@ -1,56 +1,61 @@
-import {
-    Link as ChakraLink,
-    Text,
-    Code,
-    List,
-    ListIcon,
-    ListItem,
-  } from '@chakra-ui/react'
-  import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
-  
-  import { Hero } from '../components/Hero'
-  import { Container } from '../components/Container'
-  import { Main } from '../components/Main'
-  import { DarkModeSwitch } from '../components/DarkModeSwitch'
-  import { CTA } from '../components/CTA'
-  import { Footer } from '../components/Footer'
-  
-  const Index = () => (
-    <Container height="100vh">
-      <Hero />
-      <Main>
-        <Text>
-          Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-          <Code>typescript</Code>.
-        </Text>
-  
-        <List spacing={3} my={0}>
-          <ListItem>
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <ChakraLink
-              isExternal
-              href="https://chakra-ui.com"
-              flexGrow={1}
-              mr={2}
-            >
-              Chakra UI <LinkIcon />
-            </ChakraLink>
-          </ListItem>
-          <ListItem>
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-              Next.js <LinkIcon />
-            </ChakraLink>
-          </ListItem>
-        </List>
-      </Main>
-  
-      <DarkModeSwitch />
-      <Footer>
-        <Text>Next ❤️ Chakra</Text>
-      </Footer>
-      <CTA />
-    </Container>
+import Link from 'next/link';
+import { getPostsMetaData } from '../lib/getPostsData.js';
+
+export default function Home({ postsData }) {
+  return (
+    <div className = 'info-container'>
+      
+      <p className = 'info-description'>Edital do BB</p>
+      <p className = 'info-description'>Materiais de apoio relacionados ao concurso Banco do Brasil 2021</p>
+      <hr/>
+     
+
+{postsData.map((metadata) => {
+  return (
+    <div key = {metadata.id}>
+      <Link href={`/blog/${metadata.id}`} key = {metadata.titulo} >
+        <a className = 'post-title'>{metadata.titulo}</a>
+      </Link>
+      <p className = 'post-description'>{metadata.descricao}</p>
+    </div>
+    )
+  })}
+
+      <style jsx>{`
+        .info-container {
+          margin: 0 5% 0 5%;
+        }
+
+        img {
+          width: 20%;
+          max-width: 20%;
+          height: auto;
+          margin-left: 40%;
+        }
+
+        .info-description {
+          font-size: 20px;
+        }
+
+        .post-title {
+          font-size: 24px;
+          color: black;
+        }
+
+        .post-description {
+          font-size: 16px;
+          color: #000000e6;
+        }
+      `}</style>
+    </div>
   )
-  
-  export default Index
+}
+
+export async function getStaticProps() {
+  const postsData = getPostsMetaData();
+  return {
+    props: {
+      postsData: postsData,
+    }
+  }
+}
