@@ -41,6 +41,7 @@ export default function Home({ postsData }) {
     <ListItem key = {metadata.id} >
       <Stack direction="row">
       <Badge>{metadata.tema}</Badge>
+      <Badge>{metadata.cargos}</Badge>
       </Stack>
 
 
