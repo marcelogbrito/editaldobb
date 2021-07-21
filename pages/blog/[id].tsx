@@ -1,6 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getAllPostsPath, getPostData } from '../../lib/getPostsData.js';
+import { Box } from '@chakra-ui/react';
 
 const components = {
     h1: props => <h1 style = {{ 
@@ -19,10 +20,10 @@ const components = {
 export default function Blog({ postMetadata, postContent }) {
 
     return (
-        <div>
-            <div className = 'blog-content'>
+        <Box>
+            <Box>
             <MDXRemote {...postContent} components={components} />
-            </div>
+            </Box>
 
             <style jsx>{`
                 .blog-content {
@@ -35,7 +36,7 @@ export default function Blog({ postMetadata, postContent }) {
                 }
           `}</style>
             
-        </div>
+        </Box>
     )
 }
 
