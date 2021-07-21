@@ -11,7 +11,7 @@ import {
   Badge,
   Stack
 } from '@chakra-ui/react'
-import {CheckCircleIcon, SearchIcon} from '@chakra-ui/icons'
+import {CheckCircleIcon, LinkIcon, SearchIcon} from '@chakra-ui/icons'
 import Link from 'next/link';
 import { getPostsMetaData } from '../lib/getPostsData.js';
 
@@ -41,13 +41,17 @@ export default function Home({ postsData }) {
     <ListItem key = {metadata.id} >
       <Stack direction="row">
       <Badge>{metadata.tema}</Badge>
-      <Badge>{metadata.cargos}</Badge>
-      </Stack>
+      <Badge>{metadata.nivel}</Badge>
+      
+     </Stack>
+     <Stack direction="row">
+     <Badge>{metadata.cargos}</Badge>
+     </Stack>
 
 
       <Link href={`/conteudo/${metadata.id}`} key = {metadata.titulo} >
         
-        <a className = 'post-title'><ListIcon as= {CheckCircleIcon} color="green.500" />{metadata.titulo}</a>
+        <a className = 'post-title'><ListIcon as= {LinkIcon} color="green.500" />{metadata.titulo}</a>
       </Link>
       
       
@@ -72,4 +76,8 @@ export async function getStaticProps() {
       postsData: postsData,
     }
   }
+}
+
+function cargo(cargo: any): string | number | boolean | {} | import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>> | import("react").ReactNodeArray | import("react").ReactPortal {
+  throw new Error('Function not implemented.');
 }
