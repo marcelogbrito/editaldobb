@@ -1,53 +1,66 @@
+import {
+  Link as ChakraLink,
+  Text,
+  List,
+  ListItem,
+  ListIcon,
+  Heading,
+  Box,
+  Flex,
+  Icon,
+  Badge,
+  Stack
+} from '@chakra-ui/react'
+import {CheckCircleIcon, SearchIcon} from '@chakra-ui/icons'
 import Link from 'next/link';
 import { getPostsMetaData } from '../lib/getPostsData.js';
 
 export default function Home({ postsData }) {
   return (
-    <div className = 'info-container'>
-      
-      <p className = 'info-description'>Edital do BB</p>
-      <p className = 'info-description'>Materiais de apoio relacionados ao concurso Banco do Brasil 2021</p>
-      <hr/>
-     
+ 
+   
+<>
+<Flex>
+  <Box><Heading>Edital do BB</Heading></Box>
+  <Box><SearchIcon /> </Box>
+</Flex>
 
+<Flex>
+<Text>Materiais de apoio relacionados ao concurso Banco do Brasil 2021</Text>
+</Flex>
+
+
+ 
+
+      
+    
+<Flex>
+<List spacing={3}>
 {postsData.map((metadata) => {
   return (
-    <div key = {metadata.id}>
+    <ListItem key = {metadata.id} >
+      <Stack direction="row">
+      <Badge>{metadata.tema}</Badge>
+      </Stack>
+
+
       <Link href={`/blog/${metadata.id}`} key = {metadata.titulo} >
-        <a className = 'post-title'>{metadata.titulo}</a>
+        
+        <a className = 'post-title'><ListIcon as= {CheckCircleIcon} color="green.500" />{metadata.titulo}</a>
       </Link>
-      <p className = 'post-description'>{metadata.descricao}</p>
-    </div>
+      
+      
+    </ListItem>
     )
   })}
+  </List>
+  </Flex>     
+      
 
-      <style jsx>{`
-        .info-container {
-          margin: 0 5% 0 5%;
-        }
+</>  
 
-        img {
-          width: 20%;
-          max-width: 20%;
-          height: auto;
-          margin-left: 40%;
-        }
-
-        .info-description {
-          font-size: 20px;
-        }
-
-        .post-title {
-          font-size: 24px;
-          color: black;
-        }
-
-        .post-description {
-          font-size: 16px;
-          color: #000000e6;
-        }
-      `}</style>
-    </div>
+      
+   
   )
 }
 
