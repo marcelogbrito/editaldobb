@@ -33,6 +33,7 @@ export default function Blog({ postMetadata, postContent }) {
                     margin: 1vw 25vw 1vw 25vw;
                     width: 50vw;
                     max-width: 50vw;
+                    color: white;
                 }
           `}</style>
             
