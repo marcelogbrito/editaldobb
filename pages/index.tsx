@@ -45,7 +45,7 @@ export default function Home({ postsData }) {
       </Stack>
 
 
-      <Link href={`/blog/${metadata.id}`} key = {metadata.titulo} >
+      <Link href={`/conteudo/${metadata.id}`} key = {metadata.titulo} >
         
         <a className = 'post-title'><ListIcon as= {CheckCircleIcon} color="green.500" />{metadata.titulo}</a>
       </Link>
