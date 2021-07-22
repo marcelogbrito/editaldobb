@@ -1,7 +1,9 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getAllPostsPath, getPostData } from '../../lib/getPostsData.js';
-import { Box } from '@chakra-ui/react';
+import { Box, Link } from '@chakra-ui/react';
+import React from 'react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const components = {
     h1: props => <h1 style = {{ 
@@ -17,12 +19,18 @@ const components = {
         {...props} />,
 }
 
-export default function Blog({ postMetadata, postContent }) {
-
+export default function Blog({ postMetadata, postContent, id }) {
+    const linkGitHub = `https://github.com/marcelogbrito/editaldobb/edit/main/conteudos/${id}.mdx`
     return (
         <Box>
             <Box>
             <MDXRemote {...postContent} components={components} />
+            </Box>
+            <Box>
+        <Link href={linkGitHub} isExternal>
+  Edite esse artigo no Github <ExternalLinkIcon mx="2px" />
+</Link>
+           
             </Box>
 
             <style jsx>{`
