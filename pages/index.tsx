@@ -64,12 +64,12 @@ export default function Home({ postsData }) {
 <Flex>
 <Stat>
   <StatLabel>Faltam</StatLabel>
-  <StatNumber>{calculateTimeLeft(7,28).days}</StatNumber>
+  <StatNumber>{calculateTimeLeft(7,28)["days"]}</StatNumber>
   <StatLabel>dias para o término das inscrições</StatLabel>
 </Stat>
 <Stat>
   <StatLabel>Faltam</StatLabel>
-  <StatNumber>{calculateTimeLeft(9,26).days}</StatNumber>
+  <StatNumber>{calculateTimeLeft(9,26)["days"]}</StatNumber>
   <StatLabel>dias para a data de realização da prova</StatLabel>
 </Stat>
 </Flex>
