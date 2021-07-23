@@ -15,4 +15,4 @@ export const theme = {
   config,
 }
 
-export default extendTheme(theme)
+export default extendTheme()
