@@ -9,10 +9,10 @@ const config = {
   cssVarPrefix: 'chakra',
 }
 
-export const theme = {
+export const theme: any = {
   direction,
   ...foundations,
   config,
 }
 
-export default extendTheme()
+export default extendTheme(theme)
