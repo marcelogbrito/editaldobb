@@ -16,9 +16,13 @@ import {
   Button,
   Collapse,
   Input,
-  useDisclosure
+  useDisclosure,
+  Container,
+  SimpleGrid,
+  HStack,
+  VStack
 } from '@chakra-ui/react'
-import {CheckCircleIcon, LinkIcon, SearchIcon} from '@chakra-ui/icons'
+import {CheckCircleIcon, CheckIcon, LinkIcon, SearchIcon} from '@chakra-ui/icons'
 import Link from 'next/link';
 import { getPostsMetaData } from '../lib/getPostsData.js';
 import React from 'react';
@@ -35,41 +39,37 @@ export default function Home({ postsData }) {
 <>
 <BarraNavegacao />
 <BarraEstatistica />
-<Flex>
-<Text>Materiais de apoio relacionados ao concurso Banco do Brasil 2021</Text>
-</Flex>
 
+<Box p={4}>
+      <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
+        <Heading fontSize={'3xl'}>Material de Apoio</Heading>
+        <Text color={'gray.600'} fontSize={'xl'}>
+          Esse é um conteúdo de apoio ao concurso do BB 2021
+        </Text>
+      </Stack>
 
- 
-
-      
-    
-<Flex>
-<List spacing={3}>
-{postsData.map((metadata) => {
-  return (
-    <ListItem key = {metadata.id} >
-      <Stack direction="row">
-      <Badge>{metadata.tema}</Badge>
-      <Badge>{metadata.nivel}</Badge>
-      
-     </Stack>
-     <Stack direction="row">
-     <Badge>{metadata.cargos}</Badge>
-     </Stack>
-
-
-      <Link href={`/conteudo/${metadata.id}`} key = {metadata.titulo} >
-        
-        <a className = 'post-title'><ListIcon as= {LinkIcon} color="green.500" />{metadata.titulo}</a>
-      </Link>
-      
-      
-    </ListItem>
-    )
-  })}
-  </List>
-  </Flex>     
+      <Container maxW={'6xl'} mt={10}>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
+          {postsData.map((materia) => (
+            <HStack key={materia.id} align={'top'}>
+              <Box color={'green.400'} px={2}>
+                <Icon as={CheckIcon} />
+              </Box>
+              <VStack align={'start'}>
+              <Link href={`/conteudo/${materia.id}`} key = {materia.titulo} >
+                <a><Text fontWeight={600}>{materia.titulo}</Text></a>
+                </Link>
+                <Text color={'gray.600'}>{materia.tema}</Text>
+                {materia.cargos.map((cargo) => (
+                  <Text color={'gray.600'}>{cargo}</Text>
+                ))}
+                
+              </VStack>
+            </HStack>
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Box>
       
 
 </>  

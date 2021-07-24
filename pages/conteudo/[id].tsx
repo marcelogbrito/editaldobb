@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getAllPostsPath, getPostData } from '../../lib/getPostsData.js';
-import { Box, Link } from '@chakra-ui/react';
+import { Box, Container, Link, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
@@ -22,30 +22,18 @@ const components = {
 export default function Blog({ postMetadata, postContent, id }) {
     const linkGitHub = `https://github.com/marcelogbrito/editaldobb/edit/main/conteudos/${id}.mdx`
     return (
-        <Box>
-            <Box>
-            <MDXRemote {...postContent} components={components} />
-            </Box>
-            <Box>
-        <Link href={linkGitHub} isExternal>
-  Edite esse artigo no Github <ExternalLinkIcon mx="2px" />
-</Link>
-           
-            </Box>
+        <>
+        <Container>
 
-            <style jsx>{`
-                .blog-content {
-                    display: flex;
-                    flex: 100%;
-                    flex-direction: column;
-                    margin: 1vw 25vw 1vw 25vw;
-                    width: 50vw;
-                    max-width: 50vw;
-                    color: white;
-                }
-          `}</style>
-            
-        </Box>
+        <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+        <MDXRemote {...postContent} components={components} />
+      </VStack>
+      <Link href={linkGitHub} isExternal>
+      Edite esse artigo no Github <ExternalLinkIcon mx="2px" />
+    </Link>
+    </Container>
+        </>
+ 
     )
 }
 
