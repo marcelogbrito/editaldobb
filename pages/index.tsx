@@ -22,57 +22,19 @@ import {CheckCircleIcon, LinkIcon, SearchIcon} from '@chakra-ui/icons'
 import Link from 'next/link';
 import { getPostsMetaData } from '../lib/getPostsData.js';
 import React from 'react';
+import BarraNavegacao from '../components/BarraNavegacao';
+import BarraEstatistica from '../components/BarraEstatistica';
 
 export default function Home({ postsData }) {
-  const { isOpen, onToggle } = useDisclosure()
-  const calculateTimeLeft = (mes, dia) => {
-    let year = new Date().getFullYear();
-    let difference = +new Date(`${mes}/${dia}/${year}`) - +new Date();
-    let timeLeft = {};
+  
 
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
-    };
-  }
 
-  return timeLeft;
-
-}
   return (
  
    
 <>
-<Flex>
-  <Box><Heading>Edital do BB</Heading></Box>
-  <Box> <Button onClick={onToggle}><SearchIcon /></Button>
-      <Collapse in={isOpen} animateOpacity>
-        <Box
-          p="40px"
-          mt="4"
-          rounded="md"
-          shadow="md"
-        >
-          <Input placeholder="Digite a sua busca" />
-        </Box>
-      </Collapse></Box>
-</Flex>
-
-<Flex>
-<Stat>
-  <StatLabel>Faltam</StatLabel>
-  <StatNumber>{calculateTimeLeft(7,28)["days"]} dias</StatNumber>
-  <StatLabel>para o término das inscrições</StatLabel>
-</Stat>
-<Stat>
-  <StatLabel>Faltam</StatLabel>
-  <StatNumber>{calculateTimeLeft(9,26)["days"]} dias</StatNumber>
-  <StatLabel>para a data de realização da prova</StatLabel>
-</Stat>
-</Flex>
+<BarraNavegacao />
+<BarraEstatistica />
 <Flex>
 <Text>Materiais de apoio relacionados ao concurso Banco do Brasil 2021</Text>
 </Flex>
