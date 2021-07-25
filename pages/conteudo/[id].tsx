@@ -5,6 +5,7 @@ import { Box, Container, Link, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import Layout from '../../components/Layout';
+import { FiGithub } from 'react-icons/fi';
 
 const components = {
     h1: props => <h1 style = {{ 
@@ -30,7 +31,7 @@ export default function Blog({ postMetadata, postContent, id }) {
         <MDXRemote {...postContent} components={components} />
       </VStack>
       <Link href={linkGitHub} isExternal>
-      Edite esse artigo no Github <ExternalLinkIcon mx="2px" />
+      Nos ajude a melhorar este conteúdo! Edite esse conteúdo no Github <FiGithub />
     </Link>
     </Layout>
         </>
