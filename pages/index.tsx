@@ -45,7 +45,7 @@ export default function Home({ postsData }) {
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading fontSize={'3xl'}>Material de Apoio</Heading>
         <Text color={'gray.600'} fontSize={'xl'}>
-          Esse é um conteúdo de apoio ao concurso do BB 2021
+          Conteúdo gratuito de apoio ao concurso do BB 2021
         </Text>
       </Stack>
 
