@@ -4,6 +4,7 @@ import { getAllPostsPath, getPostData } from '../../lib/getPostsData.js';
 import { Box, Container, Link, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import Layout from '../../components/Layout';
 
 const components = {
     h1: props => <h1 style = {{ 
@@ -23,7 +24,7 @@ export default function Blog({ postMetadata, postContent, id }) {
     const linkGitHub = `https://github.com/marcelogbrito/editaldobb/edit/main/conteudos/${id}.mdx`
     return (
         <>
-        <Container>
+        <Layout>
 
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
         <MDXRemote {...postContent} components={components} />
@@ -31,7 +32,7 @@ export default function Blog({ postMetadata, postContent, id }) {
       <Link href={linkGitHub} isExternal>
       Edite esse artigo no Github <ExternalLinkIcon mx="2px" />
     </Link>
-    </Container>
+    </Layout>
         </>
  
     )

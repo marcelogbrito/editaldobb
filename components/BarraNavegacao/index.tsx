@@ -34,7 +34,7 @@ const BarraNavegacao = () => {
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}>
-              Edital do BB
+              Edital do BB &#128218;
             </Text>
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -234,20 +234,21 @@ const DesktopNav = () => {
   
   const NAV_ITEMS: Array<NavItem> = [
     {
-      label: 'Inspiration',
+      label: 'Links',
       children: [
         {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '#',
+          label: 'O Banco do Brasil',
+          subLabel: 'Saiba mais',
+          href: 'https://www.bb.com.br/pbb/pagina-inicial/sobre-nos#/',
         },
         {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
-          href: '#',
+          label: 'Organizadora do Concurso',
+          subLabel: 'Cesgranrio',
+          href: 'https://www.cesgranrio.org.br/concursos/evento.aspx?id=bb0121',
         },
       ],
     },
+    /*
     {
       label: 'Find Work',
       children: [
@@ -264,12 +265,13 @@ const DesktopNav = () => {
       ],
     },
     {
-      label: 'Learn Design',
-      href: '#',
+      label: 'O Banco do Brasil',
+      href: 'https://www.bb.com.br/pbb/pagina-inicial/sobre-nos#/',
     },
+    */
     {
-      label: 'Hire Designers',
-      href: '#',
+      label: 'Cursinho Preparatório Gratuito',
+      href: 'https://app.bancariosdf.com.br/Cursinho_Banco_Do_Brasil/',
     },
   ];
   

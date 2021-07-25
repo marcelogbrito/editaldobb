@@ -28,6 +28,7 @@ import { getPostsMetaData } from '../lib/getPostsData.js';
 import React from 'react';
 import BarraNavegacao from '../components/BarraNavegacao';
 import BarraEstatistica from '../components/BarraEstatistica';
+import Layout from '../components/Layout';
 
 export default function Home({ postsData }) {
   
@@ -37,7 +38,7 @@ export default function Home({ postsData }) {
  
    
 <>
-<BarraNavegacao />
+<Layout>
 <BarraEstatistica />
 
 <Box p={4}>
@@ -71,7 +72,7 @@ export default function Home({ postsData }) {
       </Container>
     </Box>
       
-
+</Layout>
 </>  
 
       
