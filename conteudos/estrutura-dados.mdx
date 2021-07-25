@@ -13,7 +13,22 @@ date: "Jul 21, 2021"
 # Estrutura de dados e algoritmos: 
 
 ## Busca sequencial e busca binária sobre arrays
+
+Quando itens de dados são armazenados em uma coleção, como uma lista, dizemos que eles têm uma relação linear ou sequencial. Cada item de dados é armazenado em uma posição relativa aos outros. Nas listas (vetores) JavaScript, essas posições relativas são os valores de índice dos itens individuais. Como esses valores de índice são ordenados, é possível para nós visitá-los em sequência. Este processo dá origem a nossa primeira técnica de busca, a busca sequencial.
+
+A imagem abaixo mostra como essa pesquisa funciona. A partir do primeiro item da lista, simplesmente passamos de item para item, seguindo o pedido sequencial subjacente até encontrar o que estamos procurando ou ficar sem itens. Se ficarmos sem itens, descobrimos que o item que procuramos não estava presente.
+
+Busca binaria
+Caso você possua uma lista com os valores ordenados de forma numérica ou alfabética, é possível fazer uma busca muito mais rápida. Ao invés de pesquisar a lista em sequência, uma busca binária começará examinando o item do meio. Se esse item for aquele que estamos procurando, a busca termina. Se não for o item correto, podemos usar a natureza ordenada da lista para eliminar a metade dos itens restantes. Se o item que procuramos for maior do que o item do meio, sabemos que toda a metade inferior da lista, bem como o item do meio, podem ser eliminados de uma consideração mais aprofundada. O item, se estiver na lista, deve estar na metade superior.
+
+Podemos então repetir o processo com a metade superior. Comece no item do meio e compare-o contra o que estamos procurando. Novamente, encontramos ou dividimos a lista pela metade, eliminando assim uma grande parte do nosso possível espaço de busca. A Figura abaixo mostra como esse algoritmo pode encontrar rapidamente o valor 54.
+
+
 ## Ordenação 
+
+É a operação de rearranjar os dados em uma determinada
+ordem.
+
 ### métodos da bolha 
 ### ordenação por seleção
 ### ordenação por inserção 
@@ -21,3 +36,5 @@ date: "Jul 21, 2021"
 ### pilha
 ### fila 
 ### noções sobre árvore binária
+
+referencias https://www.google.com/url?sa=t&source=web&rct=j&url=https://ww2.inf.ufg.br/~hebert/disc/aed1/AED1_04_ordenacao1.pdf&ved=2ahUKEwiPxLSJr_7xAhVilZUCHcnWA1wQFjASegQIFxAC&usg=AOvVaw0GuF1s0qPyzzaXZkOdNRlr
