@@ -12,8 +12,695 @@ date: "Jul 21, 2021"
 # Ferramentas e Linguagens de Programação para manipulação de dados 
 
 ## Ansible 
+
+Ansible é uma ferramenta de automação de código aberto usada para configurar servidores, instalar software e executar uma grande variedade de tarefas de TI a partir de uma localização central. É um mecanismo sem agente de um para muitos, onde todas as instruções são executadas a partir de uma máquina de controle que se comunica com clientes remotos em SSH, embora outros protocolos também sejam suportados.
+
+Embora voltado para administradores de sistema com acesso privilegiado que rotineiramente executam tarefas como instalar e configurar aplicativos, o Ansible também pode ser usado por usuários não privilegiados. Por exemplo, um administrador de banco de dados que usa o ID de login do mysql pode usar o Ansible para criar bancos de dados, adicionar usuários e definir controles de nível de acesso.
+
+Vamos passar por um exemplo muito simples, onde um administrador do sistema provisiona 100 servidores por dia e deve executar uma série de comandos Bash em cada um antes de distribuí-lo aos usuários.
+
+
+
+Este é um exemplo simples, mas serve para ilustrar a facilidade com que os comandos podem ser especificados em arquivos yaml e executados em servidores remotos. Em um ambiente heterogêneo, as declarações condicionais podem ser adicionadas para que determinados comandos sejam executados somente em determinados servidores (por exemplo, “apenas executa comandos yum em sistemas que não são Ubuntu ou Debian“).
+
+Um recurso importante disponível no Ansible é um playbook que descreve um estado desejado em um sistema de computador, de forma que um playbook pode ser executado diversas vezes em um servidor sem afetar seu estado. Se uma determinada tarefa já foi implementada (por exemplo, “usuário sysman já existe“), então Ansible simplesmente a ignora e continua a tarefa.
+
+Definições
+Tasks: uma tarefa é a menor unidade de trabalho. Pode ser uma ação como “Instalar um banco de dados“, “Instalar um servidor web“, “Criar uma regra de firewall” ou “Copiar este arquivo de configuração para esse servidor”.
+
+Plays: um play é composto de tarefas. Por exemplo, o play: “Preparar um banco de dados para ser usado por um servidor web” é composto das tarefas:
+
+1) Instalar o pacote de banco de dados;
+2) Definir uma senha para o administrador do banco de dados;
+3) Criar um banco de dados;
+4) Definir o acesso ao banco de dados.
+Playbook: Um playbook é composto por um conjunto de plays. Um playbook poderia ser: “Prepare meu site com um backend de banco de dados”, e os plays seriam 1) Configurar o servidor de banco de dados; e 2) Configurar o servidor web.
+
+Roles: as funções são usadas para salvar e organizar manuais e permitir compartilhar e reutilizar playbooks. Seguindo os exemplos anteriores, se você precisa configurar completamente um servidor web, pode usar uma função que outros escreveram e compartilharam para fazer exatamente isso. Uma vez que as funções são altamente configuráveis (se escritas corretamente), elas podem ser facilmente reutilizadas para atender a quaisquer requisitos de deploy.
+
+Ansible Galaxy: O Ansible Galaxy é um repositório online onde as funções são carregadas para que possam ser compartilhadas com outras pessoas. Está integrado com o GitHub, de modo que os roles podem ser organizados em repositórios Git e, em seguida, compartilhados via Ansible Galaxy.
+
+Essas definições e suas relações são descritas aqui:
+
+Observe que esta é apenas uma maneira de organizar as tarefas que precisam ser executadas. Poderíamos ter dividido a instalação do banco de dados e do servidor web em diferentes playbooks e em diferentes roles. A maioria dos roles no Ansible Galaxy instala e configura aplicações individuais. Você pode ver exemplos para instalar o mysql e instalar o httpd.
+
+
+Dicas para escrever playbooks
+A melhor fonte para aprender Ansible é, claro, consultar o site da documentação oficial do projeto. E, como de costume, a pesquisa online é sua amiga. Recomendamos, porém, começar com tarefas simples, como instalar aplicativos ou criar usuários. Quando estiver/se sentir pronto, siga as seguintes diretrizes:
+
+Ao realizar testes, use um pequeno subconjunto de servidores para que suas plays executem mais rapidamente. Se elas forem bem sucedidas em um servidor, serão bem-sucedidas em outros;
+Sempre faça um dry run para garantir que todos os comandos estejam funcionando (execute com –check-mode flag).
+Teste sempre que precisar, sem medo de quebrar as coisas. As tarefas descrevem um estado desejado, portanto, se um estado desejado já for alcançado, ele simplesmente será ignorado.
+Certifique-se de que todos os nomes de host definidos em /etc/ansible/hosts sejam “resolvíveis”.
+Como a comunicação com hosts remotos é feita usando SSH, as chaves devem ser aceitas pela máquina de controle, então, 1) troque as chaves com hosts remotos antes do início; ou 2) esteja pronto para digitar “Sim” para aceitar solicitações de troca de chaves SSH para cada host remoto que você deseja gerenciar.
+Embora você possa combinar tarefas para diferentes distribuições Linux em um playbook, é recomendável escrever um playbook separado para cada distribuição.
+Em última análise…
+O Ansible é uma ótima opção para implementar a automação em seu data center:
+
+É agentless, por isso é mais simples de instalar do que outras ferramentas de automação.
+As instruções estão em YAML (embora JSON também seja suportado), por isso é mais fácil do que escrever scripts Shell.
+É software de código aberto, então contribua para torná-lo ainda melhor!
+
+https://blog.mandic.com.br/artigos/ansible-dicas-para-quem-esta-comecando-a-usar-a-ferramenta-de-automacao/
+
+
 ## Java (SE 11 e EE 8) 
+
+https://www.guiadojava.com.br/2019/05/certificacao-java-11-o-que-mudou.html
+
+Execute um arquivo Java com um único comando 
+Antes era preciso compilar um arquivo Java usando javac primeiro, agora você pode usar o comando java diretamente e a compilação vai ser implícita antes da execução. Essa funcionalidade chegou após a especificação JEP 330.
+
+Métodos java String
+isBlank() – A instância retorna um valor boolean caso a string esteja em branco ou haja espaço em banco.
+
+<p> CODE: https://gist.github.com/maluaraujo/1d5c351c8d12c75f30eb951e031fd827.js</p>
+
+lines() – Este método retorna uma matriz de strings que é uma coleção de todas as substrings divididas por linhas.
+
+<p> CODE: https://gist.github.com/maluaraujo/d1fe2097195b164e805efd8e6d90ab56.js</p>
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/5a84e5dbb06d49b6057d3a84c462cd19.js</p>
+
+strip() – evolução do método trim, pois o mesmo não previa unicode, remove espaços do início e no fim da string, stripLeading() remove espaços a esquerda, stripTrailing() remove espaços a direita.
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/b9ccd20791d3e82d33d76d5eb775d648.js</p>
+
+repeat(int) – O método repeat simplesmente repete a string a quantidade de vezes que foi passado em parâmetro, como mencionado no método na forma de um int.
+
+<p> CODE: https://gist.github.com/maluaraujo/3296d07bbcd81772ba93fb353a4b8ab8.js</p>
+
+Sintaxe da variável local para parâmetro Lambda
+
+O JEP 323 permite que var seja usado para declarar os parâmetros formais de uma expressão lambda implicitamente tipada.
+
+<p> CODE: https://gist.github.com/maluaraujo/aace0099315127ab023750620c88363b.js</p>
+‍
+
+Limitação deste recurso
+Você deve especificar o tipo var em todos os parâmetros ou nenhum.
+
+Coisas como as seguintes não são possíveis:
+
+<p> CODE: https://gist.github.com/maluaraujo/d9e2e670a6b68ff068b64a2736aa52f4.js</p>
+‍
+
+Ler e Gravar Strings de/para arquivos
+O Java 11 se esforça para tornar a leitura e gravação de String conveniente. Ele introduziu os seguintes métodos para ler e gravar em / dos arquivos readString() writeString().
+
+<p> CODE: https://gist.github.com/maluaraujo/4e766b2f5841b60b9ad8b98ec8e2b8e4.js</p>
+
+Java é pago?
+Vejo bastante confusão sobre o Java e seus SDKs (Kits de Desenvolvimento de Software) disponíveis. Você pode ter ouvido o Java SDK ser chamado de JDK. Eles são um e o mesmo. 
+
+Java SE (Standard Edition) é uma especificação que é governada pelo JCP (Java Community Process). Esse processo decide o que entra ou é removido do JDK do Java. Qualquer um pode implementar a especificação Java. 
+
+Se eles passarem pelo TCK (Kit de compatibilidade de teste) serão considerados um JDK viável.
+
+A confusão em torno do Java SDK teve início por dois eventos:
+
+Java começou a lançar novas versões principais a cada seis meses e Oracle mudou seu modelo de suporte para Java.
+
+A Oracle agora distribui duas compilações do JDK: Oracle JDK e Oracle OpenJDK. A versão Oracle JDK exige licença, veja aqui o valor.
+
+Já o Oracle Open JDK é gratuito para desenvolvimento e teste, mas você tem que pagar por isso se usá-lo em produção, “JDK in production requires a commercial license”.
+
+https://www.java.com/en/download/faq/distribution.xml
+
+Eventos
+Pesquisar
+Pesquisar
+
+Java 11: funcionalidades e principais novidades
+Back-End
+• 4 set 2019
+Se você já tem algum tempo de estrada trabalhando com desenvolvimento, vai concordar comigo que o Java domina o mercado de desenvolvimento de software há décadas. 
+
+As estatísticas nos mostram que Java deve permanecer no mercado por muito tempo e esses são alguns dos motivos:
+
+1) Vários dos softwares desenvolvidos em Java precisam ser mantidos e/ou migrados.
+
+2) É muito comum migrações Java para novas versões da linguagem, 3) além do crescente desenvolvimento de novos softwares usando a linguagem. 
+
+java 11
+
+A vez do Java 11 
+Existem várias distribuições do Kit de Desenvolvimento para Java, o famoso JDK. Em Janeiro de 2019 a Oracle não dará mais suporte para o Java 8 a última versão LTS (Long Team Suport)  é interessante migrar aplicações críticas bem como desenvolver novas aplicações utilizando Java 11 que também é LTS e para ajudar a escolher qual distribuição do Java você deve utilizar escrevi este outro post (link)
+
+A migração do Java 8 para o Java 11 está acontecendo:
+
+funcionalidades java
+
+Leia também Java vs Kotlin: Vantagens, Desvantagens e Performance
+
+Funcionalidades Java 11
+Execute um arquivo Java com um único comando 
+Antes era preciso compilar um arquivo Java usando javac primeiro, agora você pode usar o comando java diretamente e a compilação vai ser implícita antes da execução. Essa funcionalidade chegou após a especificação JEP 330.
+
+Métodos java String
+isBlank() – A instância retorna um valor boolean caso a string esteja em branco ou haja espaço em banco.
+
+<p> CODE: https://gist.github.com/maluaraujo/1d5c351c8d12c75f30eb951e031fd827.js</p>
+
+lines() – Este método retorna uma matriz de strings que é uma coleção de todas as substrings divididas por linhas.
+
+<p> CODE: https://gist.github.com/maluaraujo/d1fe2097195b164e805efd8e6d90ab56.js</p>
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/5a84e5dbb06d49b6057d3a84c462cd19.js</p>
+
+strip() – evolução do método trim, pois o mesmo não previa unicode, remove espaços do início e no fim da string, stripLeading() remove espaços a esquerda, stripTrailing() remove espaços a direita.
+
+<p> CODE: https://gist.github.com/maluaraujo/5355d778e4390b1fb7f8834f1dd99a3b.js</p>
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/b9ccd20791d3e82d33d76d5eb775d648.js</p>
+
+repeat(int) – O método repeat simplesmente repete a string a quantidade de vezes que foi passado em parâmetro, como mencionado no método na forma de um int.
+
+<p> CODE: https://gist.github.com/maluaraujo/3296d07bbcd81772ba93fb353a4b8ab8.js</p>
+
+Sintaxe da variável local para parâmetro Lambda
+O JEP 323 permite que var seja usado para declarar os parâmetros formais de uma expressão lambda implicitamente tipada.
+
+<p> CODE: https://gist.github.com/maluaraujo/aace0099315127ab023750620c88363b.js</p>
+‍
+
+Limitação deste recurso
+Você deve especificar o tipo var em todos os parâmetros ou nenhum.
+
+Coisas como as seguintes não são possíveis:
+
+<p> CODE: https://gist.github.com/maluaraujo/d9e2e670a6b68ff068b64a2736aa52f4.js</p>
+‍
+
+Ler e Gravar Strings de/para arquivos
+O Java 11 se esforça para tornar a leitura e gravação de String conveniente. Ele introduziu os seguintes métodos para ler e gravar em / dos arquivos readString() writeString().
+
+<p> CODE: https://gist.github.com/maluaraujo/4e766b2f5841b60b9ad8b98ec8e2b8e4.js</p>
+
+Java é pago?
+blog da zup
+‍
+
+Vejo bastante confusão sobre o Java e seus SDKs (Kits de Desenvolvimento de Software) disponíveis. Você pode ter ouvido o Java SDK ser chamado de JDK. Eles são um e o mesmo. 
+
+Java SE (Standard Edition) é uma especificação que é governada pelo JCP (Java Community Process). Esse processo decide o que entra ou é removido do JDK do Java. Qualquer um pode implementar a especificação Java. 
+
+Se eles passarem pelo TCK (Kit de compatibilidade de teste) serão considerados um JDK viável.
+
+A confusão em torno do Java SDK teve início por dois eventos:
+
+Java começou a lançar novas versões principais a cada seis meses e Oracle mudou seu modelo de suporte para Java.
+
+A Oracle agora distribui duas compilações do JDK: Oracle JDK e Oracle OpenJDK. A versão Oracle JDK exige licença, veja aqui o valor.
+
+Já o Oracle Open JDK é gratuito para desenvolvimento e teste, mas você tem que pagar por isso se usá-lo em produção, “JDK in production requires a commercial license”.
+
+Entenda melhor aqui.
+
+Opções do Java SDK
+Atualmente, o único código-fonte para o JDK está no projeto OpenJDK. Você pode verificar o código fonte do OpenJDK e construí-lo você mesmo, se quiser. No entanto, não é considerado “compatível com Java SE”, a menos que passe no TCK. 
+
+Além disso, você não pode chamá-lo de “Java SE” sem obter uma licença da Oracle.
+
+Existem muitas opções do Java SDK além do Oracle. 
+
+Vamos dar uma olhada nos principais e quando usá-los.
+
+AdoptOpenJDK
+AdoptOpenJDK é uma comunidade e código que constroem binários OpenJDK gratuitos, publicados para o site adoptopenjdk.net.. 
+
+Os binários são publicados por cinco anos após o lançamento inicial da versão. Os builds estão disponíveis para OpenJ9 (IBM’s JVM) e HotSpot.
+
+O que é o OpenJ9?
+De acordo com o site AdoptOpenJDK, o OpenJ9 é uma JVM projetada para uso com pouca memória e tempo de inicialização rápido. Uma JVM executa o bytecode Java compilado, enquanto a linguagem Java fornece uma sintaxe de como produzir esse bytecode.
+
+As construções AdoptOpenJDK não são testadas com o TCK devido um desacordo com a Oracle. Eles testam com um conjunto de testes funcionais, de integração e de desempenho. Eles também testam bibliotecas, linguagens e aplicativos de frameworks populares.
+
+
+Menu
+VEM PRA ZUP
+Central de Conteúdos
+
+Blog
+Zupcast
+Webinars
+Eventos
+Pesquisar
+Pesquisar
+
+Java 11: funcionalidades e principais novidades
+Back-End
+• 4 set 2019
+Se você já tem algum tempo de estrada trabalhando com desenvolvimento, vai concordar comigo que o Java domina o mercado de desenvolvimento de software há décadas. 
+
+As estatísticas nos mostram que Java deve permanecer no mercado por muito tempo e esses são alguns dos motivos:
+
+1) Vários dos softwares desenvolvidos em Java precisam ser mantidos e/ou migrados.
+
+2) É muito comum migrações Java para novas versões da linguagem, 3) além do crescente desenvolvimento de novos softwares usando a linguagem. 
+
+java 11
+
+A vez do Java 11 
+Existem várias distribuições do Kit de Desenvolvimento para Java, o famoso JDK. Em Janeiro de 2019 a Oracle não dará mais suporte para o Java 8 a última versão LTS (Long Team Suport)  é interessante migrar aplicações críticas bem como desenvolver novas aplicações utilizando Java 11 que também é LTS e para ajudar a escolher qual distribuição do Java você deve utilizar escrevi este outro post (link)
+
+A migração do Java 8 para o Java 11 está acontecendo:
+
+funcionalidades java
+
+Leia também Java vs Kotlin: Vantagens, Desvantagens e Performance
+
+Funcionalidades Java 11
+Execute um arquivo Java com um único comando 
+Antes era preciso compilar um arquivo Java usando javac primeiro, agora você pode usar o comando java diretamente e a compilação vai ser implícita antes da execução. Essa funcionalidade chegou após a especificação JEP 330.
+
+Métodos java String
+isBlank() – A instância retorna um valor boolean caso a string esteja em branco ou haja espaço em banco.
+
+<p> CODE: https://gist.github.com/maluaraujo/1d5c351c8d12c75f30eb951e031fd827.js</p>
+
+lines() – Este método retorna uma matriz de strings que é uma coleção de todas as substrings divididas por linhas.
+
+<p> CODE: https://gist.github.com/maluaraujo/d1fe2097195b164e805efd8e6d90ab56.js</p>
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/5a84e5dbb06d49b6057d3a84c462cd19.js</p>
+
+strip() – evolução do método trim, pois o mesmo não previa unicode, remove espaços do início e no fim da string, stripLeading() remove espaços a esquerda, stripTrailing() remove espaços a direita.
+
+<p> CODE: https://gist.github.com/maluaraujo/5355d778e4390b1fb7f8834f1dd99a3b.js</p>
+
+Saída
+
+<p> CODE: https://gist.github.com/maluaraujo/b9ccd20791d3e82d33d76d5eb775d648.js</p>
+
+repeat(int) – O método repeat simplesmente repete a string a quantidade de vezes que foi passado em parâmetro, como mencionado no método na forma de um int.
+
+<p> CODE: https://gist.github.com/maluaraujo/3296d07bbcd81772ba93fb353a4b8ab8.js</p>
+
+Sintaxe da variável local para parâmetro Lambda
+O JEP 323 permite que var seja usado para declarar os parâmetros formais de uma expressão lambda implicitamente tipada.
+
+<p> CODE: https://gist.github.com/maluaraujo/aace0099315127ab023750620c88363b.js</p>
+‍
+
+Limitação deste recurso
+Você deve especificar o tipo var em todos os parâmetros ou nenhum.
+
+Coisas como as seguintes não são possíveis:
+
+<p> CODE: https://gist.github.com/maluaraujo/d9e2e670a6b68ff068b64a2736aa52f4.js</p>
+‍
+
+Ler e Gravar Strings de/para arquivos
+O Java 11 se esforça para tornar a leitura e gravação de String conveniente. Ele introduziu os seguintes métodos para ler e gravar em / dos arquivos readString() writeString().
+
+<p> CODE: https://gist.github.com/maluaraujo/4e766b2f5841b60b9ad8b98ec8e2b8e4.js</p>
+
+Java é pago?
+blog da zup
+‍
+
+Vejo bastante confusão sobre o Java e seus SDKs (Kits de Desenvolvimento de Software) disponíveis. Você pode ter ouvido o Java SDK ser chamado de JDK. Eles são um e o mesmo. 
+
+Java SE (Standard Edition) é uma especificação que é governada pelo JCP (Java Community Process). Esse processo decide o que entra ou é removido do JDK do Java. Qualquer um pode implementar a especificação Java. 
+
+Se eles passarem pelo TCK (Kit de compatibilidade de teste) serão considerados um JDK viável.
+
+A confusão em torno do Java SDK teve início por dois eventos:
+
+Java começou a lançar novas versões principais a cada seis meses e Oracle mudou seu modelo de suporte para Java.
+
+A Oracle agora distribui duas compilações do JDK: Oracle JDK e Oracle OpenJDK. A versão Oracle JDK exige licença, veja aqui o valor.
+
+Já o Oracle Open JDK é gratuito para desenvolvimento e teste, mas você tem que pagar por isso se usá-lo em produção, “JDK in production requires a commercial license”.
+
+Entenda melhor aqui.
+
+Opções do Java SDK
+Atualmente, o único código-fonte para o JDK está no projeto OpenJDK. Você pode verificar o código fonte do OpenJDK e construí-lo você mesmo, se quiser. No entanto, não é considerado “compatível com Java SE”, a menos que passe no TCK. 
+
+Além disso, você não pode chamá-lo de “Java SE” sem obter uma licença da Oracle.
+
+Existem muitas opções do Java SDK além do Oracle. 
+
+Vamos dar uma olhada nos principais e quando usá-los.
+
+AdoptOpenJDK
+AdoptOpenJDK é uma comunidade e código que constroem binários OpenJDK gratuitos, publicados para o site adoptopenjdk.net.. 
+
+Os binários são publicados por cinco anos após o lançamento inicial da versão. Os builds estão disponíveis para OpenJ9 (IBM’s JVM) e HotSpot.
+
+O que é o OpenJ9?
+De acordo com o site AdoptOpenJDK, o OpenJ9 é uma JVM projetada para uso com pouca memória e tempo de inicialização rápido. Uma JVM executa o bytecode Java compilado, enquanto a linguagem Java fornece uma sintaxe de como produzir esse bytecode.
+
+As construções AdoptOpenJDK não são testadas com o TCK devido um desacordo com a Oracle. Eles testam com um conjunto de testes funcionais, de integração e de desempenho. Eles também testam bibliotecas, linguagens e aplicativos de frameworks populares.
+
+Amazon Corretto
+A Amazon é o novo fornecedor do bloco que oferece versões do OpenJDK em aws.amazon.com/corretto. O Amazon Corretto 8 (baseado no Java 8) está em pré-visualização.
+
+Não há nenhuma versão do Java 11 disponível. Corretto 11 está programado para ser lançado no segundo trimestre de 2019. GA para Corretto 8 é Q1. Corretto é o único que tem suporte de longo prazo sem custo da Amazon e suas construções passaram pelo TCK. 
+
+Atualmente, o suporte a Java 8 está previsto para ser executado até junho de 2023.
+
+Todas as instâncias do AWS que executam o Java usam Corretto por padrão.
+
+Azul Zulu
+Azul constrói e publica o Zulu em azul.com/downloads/zulu. É uma versão do OpenJDK que foi aprovada pelo TCK e é totalmente compatível com o padrão Java SE. O Zulu Enterprise é a oferta comercial da Azul com suporte pago. Ele fornece suporte de longo prazo por oito anos após o lançamento inicial da versão.
+
+A plataforma Azure da Microsoft usa o Zulu para seu suporte a Java.
+
+OpenJDK da Oracle
+O Oracle constrói e publica o OpenJDK em jdk.java.net. Os binários só são publicados nos primeiros seis meses após um lançamento importante. A versão comercial de marca (que não pode ser usada na produção sem o pagamento do Oracle) está disponível em oracle.com/technetwork/java/javase/downloads.
+
+jdk.java.net é onde as compilações do OpenJDK da Oracle são publicadas para download, o openjdk.java.net é o próprio projeto OpenJDK.
+
+Red Hat
+A Red Hat distribui as compilações OpenJDK via Red Hat Enterprise Linux, um produto comercial. Ele também tem um projeto IcedTea que cria o OpenJDK e adiciona alguns recursos. No entanto, não parece ser muito ativo (não há suporte para Java 11) e você quase não ouve mais falar sobre isso.
+
+Qual distribuição JDK você deve usar?
+Creio que deve ser utilizados vários parâmetros para esta decisão. Se você já está utilizando uma plataforma como Amazon, Azure e OpenShift (RedHat) considere fortemente usar a versão OpenJDK deles aproveitando o suporte oferecido por cada grande empresa. Eu acredito no opensource e por isso minha escolha iria com certeza no AdoptOpenJDK ou até mesmo no OpenJDK da Oracle.
+
+Opções de OpenJDK
+
+AdoptOpenJDK
+Amazon Corretto
+Azul Zulu
+BellSoft Liberica
+IBM  
+Oracle JDK
+Oracle OpenJDK
+Ojdkbuild
+RedHat
+SapMachine
+Ainda ficou com alguma dúvida sobre Java 11? Conta pra gente nos comentários.
+
+https://www.zup.com.br/blog/java-11-principais-novidades
+
+Eventos
+Pesquisar
+Pesquisar
+
+Java EE: entenda a plataforma e principais funcionalidades
+Back-End
+• 8 out 2019
+Antes de mais nada, vamos começar contextualizando brevemente o Java EE, sigla para Java Platform Enterprise Edition (ou, em português, Plataforma Java Edição Empresarial). Ele consiste em uma plataforma de programação para servidores amplamente utilizada e, como o próprio nome já diz, na linguagem Java.
+
+Sua principal utilização é para o desenvolvimento de software em ambientes corporativos, com aplicações como web e rede, além de outros recursos seguros, escaláveis e multicamadas que facilitam muito o nosso dia a dia.
+
+A grande diferença em relação à Plataforma Java Standard Edition, conhecida como Java SE, está na adição de bibliotecas que, por meio das suas funcionalidades, tornam possível implantar software Java multicamada, distribuído e tolerante a erros.
+
+Além disso, essa plataforma é classificada como um padrão de desenvolvimento, uma vez que o fornecedor precisa seguir certas regras para poder declarar os seus produtos compatíveis com esse recurso. Mais um ponto positivo!
+
+Todas essas características fazem com que o Java EE seja bastante usado no desenvolvimento de software para empresas. Separamos neste artigo as principais características, funcionalidades e recursos dessa plataforma para ajudar você, desenvolvedor, a fazer um ótimo trabalho.
+
+
+Quais as principais funcionalidades do Java EE?
+O Java EE é formado por uma série de contêineres e especificações com diferentes funcionalidades. Listamos abaixo os principais: 
+
+Java Database Connectivity (JDBC): Usado para acessar bancos de dados.
+Enterprise Java Beans (EJBs): Usados para desenvolver componentes de software. Graças a esses recursos, o programador consegue focar sua atenção nas necessidades de cada cliente, porque detalhes como escalabilidade, segurança, disponibilidade e infraestrutura ficam sob responsabilidade do servidor de aplicações.
+Servelets: Esse recurso é usado para desenvolver aplicações web com conteúdo dinâmico. Ele é composto por uma API que tem como objetivo fornecer ao programador os recursos do servidor web de uma forma mais simples e fácil de operar.
+Java Transaction API (JTA): Trata-se de uma API que busca padronizar o tratamento de transações em uma aplicação Java.
+Java Server Pages (JSP): Pode ser conceituado como uma especialização do servlet que possibilita ao programador desenvolver com mais facilidade conteúdos dinâmicos.
+Java Persistence API (JPA): Trata-se de uma API que tem como objetivo padronizar o acesso a banco de dados por meio de um mapeamento Objeto Relacional dos Enterprise Java Beans.
+Java Connector Architecture (JCA): Consiste em uma API que uniformiza a ligação a aplicações legadas.
+Java Server Faces (JSF): Trata-se de uma especificação Java que ajuda o programador na construção de interfaces de usuário a partir de componentes para aplicação em ambiente web.
+Java Message Service (JMS): Por meio desta API para middleware orientada a mensagens, torna-se possível a comunicação entre aplicações de forma assíncrona.
+
+Servelets Concorrentes no Java EE
+Trabalhar com processamento concorrente pode ser uma necessidade no seu dia a dia. Para isso, iremos mostrar agora o uso da API “Concurrency Utilities for Java EE” com exemplos.
+
+Para executar um certo código de forma assíncrona, ele deve estar presente em uma classe “Runnable” ou “Callable”. Ao realizar essa tarefa, será gerado um identificador.
+
+Essa tarefa, depois de ser enviada para execução, não envia qualquer resultado. Para que isso seja possível, você precisa usar uma classe que implemente a interface “Callable”. Graças a esta classe, um valor randômico de 1 a 10 será devolvido e apresentado depois no HTML, como resultado da chamada de um novo servlet.
+
+
+Menu
+VEM PRA ZUP
+Central de Conteúdos
+
+Blog
+Zupcast
+Webinars
+Eventos
+Pesquisar
+Pesquisar
+
+Java EE: entenda a plataforma e principais funcionalidades
+Back-End
+• 8 out 2019
+Antes de mais nada, vamos começar contextualizando brevemente o Java EE, sigla para Java Platform Enterprise Edition (ou, em português, Plataforma Java Edição Empresarial). Ele consiste em uma plataforma de programação para servidores amplamente utilizada e, como o próprio nome já diz, na linguagem Java.
+
+Sua principal utilização é para o desenvolvimento de software em ambientes corporativos, com aplicações como web e rede, além de outros recursos seguros, escaláveis e multicamadas que facilitam muito o nosso dia a dia.
+
+A grande diferença em relação à Plataforma Java Standard Edition, conhecida como Java SE, está na adição de bibliotecas que, por meio das suas funcionalidades, tornam possível implantar software Java multicamada, distribuído e tolerante a erros.
+
+Além disso, essa plataforma é classificada como um padrão de desenvolvimento, uma vez que o fornecedor precisa seguir certas regras para poder declarar os seus produtos compatíveis com esse recurso. Mais um ponto positivo!
+
+Todas essas características fazem com que o Java EE seja bastante usado no desenvolvimento de software para empresas. Separamos neste artigo as principais características, funcionalidades e recursos dessa plataforma para ajudar você, desenvolvedor, a fazer um ótimo trabalho.
+
+Quais as principais funcionalidades do Java EE?
+O Java EE é formado por uma série de contêineres e especificações com diferentes funcionalidades. Listamos abaixo os principais: 
+
+Java Database Connectivity (JDBC): Usado para acessar bancos de dados.
+Enterprise Java Beans (EJBs): Usados para desenvolver componentes de software. Graças a esses recursos, o programador consegue focar sua atenção nas necessidades de cada cliente, porque detalhes como escalabilidade, segurança, disponibilidade e infraestrutura ficam sob responsabilidade do servidor de aplicações.
+Servelets: Esse recurso é usado para desenvolver aplicações web com conteúdo dinâmico. Ele é composto por uma API que tem como objetivo fornecer ao programador os recursos do servidor web de uma forma mais simples e fácil de operar.
+Java Transaction API (JTA): Trata-se de uma API que busca padronizar o tratamento de transações em uma aplicação Java.
+Java Server Pages (JSP): Pode ser conceituado como uma especialização do servlet que possibilita ao programador desenvolver com mais facilidade conteúdos dinâmicos.
+Java Persistence API (JPA): Trata-se de uma API que tem como objetivo padronizar o acesso a banco de dados por meio de um mapeamento Objeto Relacional dos Enterprise Java Beans.
+Java Connector Architecture (JCA): Consiste em uma API que uniformiza a ligação a aplicações legadas.
+Java Server Faces (JSF): Trata-se de uma especificação Java que ajuda o programador na construção de interfaces de usuário a partir de componentes para aplicação em ambiente web.
+Java Message Service (JMS): Por meio desta API para middleware orientada a mensagens, torna-se possível a comunicação entre aplicações de forma assíncrona.
+Servelets Concorrentes no Java EE
+Trabalhar com processamento concorrente pode ser uma necessidade no seu dia a dia. Para isso, iremos mostrar agora o uso da API “Concurrency Utilities for Java EE” com exemplos.
+
+Para executar um certo código de forma assíncrona, ele deve estar presente em uma classe “Runnable” ou “Callable”. Ao realizar essa tarefa, será gerado um identificador.
+
+Essa tarefa, depois de ser enviada para execução, não envia qualquer resultado. Para que isso seja possível, você precisa usar uma classe que implemente a interface “Callable”. Graças a esta classe, um valor randômico de 1 a 10 será devolvido e apresentado depois no HTML, como resultado da chamada de um novo servlet.
+
+Contêineres no Java EE
+Uma das características que nós adoramos no Java EE são seus famosos contêineres, que têm como função abrigar componentes, serviços e APIs a fim de permitir a comunicação entre esses elementos. Esses contêineres são implantados por fornecedores de serviços de aplicativos, sendo necessário um contêiner para cada um dos componentes.
+
+Compartilhamos a seguir os principais serviços oferecidos pelos contêineres.
+
+Serviços de Diretório: Chamado de Java Naming and Directory Interfaces (JNDI), trata-se de uma API que consegue acessar serviços de diretórios. Cada um destes serviços tem que fornecer um Service Provider (Provedor de Serviços).
+Segurança: O uso de APIs como Java Authentication and Authorization Service (JAAS) contribui para a autorização e autenticação de usuários na plataforma Java EE.
+XML: Esse serviço oferece suporte a XML (eXtensible Markup Language), utilizando DOM (Document Object Model), documentos SAX (Simple API for XML) e XSLT (extensible Stylesheet Language Transformations).
+E-mail: Graças a esse componente, torna-se possível a troca de mensagens por meio do Java Message Service (JMS), o serviço de mensagens do Java. Aqui, o uso da API Java Mail permite controlar os e-mails e mensagens enviadas e recebidas com clientes, por meio de diferentes protocolos como IMAP, SMTP e POP.
+
+VEM PRA ZUP
+Central de Conteúdos
+
+Blog
+Zupcast
+Webinars
+Eventos
+Pesquisar
+Pesquisar
+
+Java EE: entenda a plataforma e principais funcionalidades
+Back-End
+• 8 out 2019
+Antes de mais nada, vamos começar contextualizando brevemente o Java EE, sigla para Java Platform Enterprise Edition (ou, em português, Plataforma Java Edição Empresarial). Ele consiste em uma plataforma de programação para servidores amplamente utilizada e, como o próprio nome já diz, na linguagem Java.
+
+Sua principal utilização é para o desenvolvimento de software em ambientes corporativos, com aplicações como web e rede, além de outros recursos seguros, escaláveis e multicamadas que facilitam muito o nosso dia a dia.
+
+A grande diferença em relação à Plataforma Java Standard Edition, conhecida como Java SE, está na adição de bibliotecas que, por meio das suas funcionalidades, tornam possível implantar software Java multicamada, distribuído e tolerante a erros.
+
+Além disso, essa plataforma é classificada como um padrão de desenvolvimento, uma vez que o fornecedor precisa seguir certas regras para poder declarar os seus produtos compatíveis com esse recurso. Mais um ponto positivo!
+
+Todas essas características fazem com que o Java EE seja bastante usado no desenvolvimento de software para empresas. Separamos neste artigo as principais características, funcionalidades e recursos dessa plataforma para ajudar você, desenvolvedor, a fazer um ótimo trabalho.
+
+Quais as principais funcionalidades do Java EE?
+O Java EE é formado por uma série de contêineres e especificações com diferentes funcionalidades. Listamos abaixo os principais: 
+
+Java Database Connectivity (JDBC): Usado para acessar bancos de dados.
+Enterprise Java Beans (EJBs): Usados para desenvolver componentes de software. Graças a esses recursos, o programador consegue focar sua atenção nas necessidades de cada cliente, porque detalhes como escalabilidade, segurança, disponibilidade e infraestrutura ficam sob responsabilidade do servidor de aplicações.
+Servelets: Esse recurso é usado para desenvolver aplicações web com conteúdo dinâmico. Ele é composto por uma API que tem como objetivo fornecer ao programador os recursos do servidor web de uma forma mais simples e fácil de operar.
+Java Transaction API (JTA): Trata-se de uma API que busca padronizar o tratamento de transações em uma aplicação Java.
+Java Server Pages (JSP): Pode ser conceituado como uma especialização do servlet que possibilita ao programador desenvolver com mais facilidade conteúdos dinâmicos.
+Java Persistence API (JPA): Trata-se de uma API que tem como objetivo padronizar o acesso a banco de dados por meio de um mapeamento Objeto Relacional dos Enterprise Java Beans.
+Java Connector Architecture (JCA): Consiste em uma API que uniformiza a ligação a aplicações legadas.
+Java Server Faces (JSF): Trata-se de uma especificação Java que ajuda o programador na construção de interfaces de usuário a partir de componentes para aplicação em ambiente web.
+Java Message Service (JMS): Por meio desta API para middleware orientada a mensagens, torna-se possível a comunicação entre aplicações de forma assíncrona.
+Servelets Concorrentes no Java EE
+Trabalhar com processamento concorrente pode ser uma necessidade no seu dia a dia. Para isso, iremos mostrar agora o uso da API “Concurrency Utilities for Java EE” com exemplos.
+
+Para executar um certo código de forma assíncrona, ele deve estar presente em uma classe “Runnable” ou “Callable”. Ao realizar essa tarefa, será gerado um identificador.
+
+Essa tarefa, depois de ser enviada para execução, não envia qualquer resultado. Para que isso seja possível, você precisa usar uma classe que implemente a interface “Callable”. Graças a esta classe, um valor randômico de 1 a 10 será devolvido e apresentado depois no HTML, como resultado da chamada de um novo servlet.
+
+Contêineres no Java EE
+Uma das características que nós adoramos no Java EE são seus famosos contêineres, que têm como função abrigar componentes, serviços e APIs a fim de permitir a comunicação entre esses elementos. Esses contêineres são implantados por fornecedores de serviços de aplicativos, sendo necessário um contêiner para cada um dos componentes.
+
+Compartilhamos a seguir os principais serviços oferecidos pelos contêineres.
+
+Serviços de Diretório: Chamado de Java Naming and Directory Interfaces (JNDI), trata-se de uma API que consegue acessar serviços de diretórios. Cada um destes serviços tem que fornecer um Service Provider (Provedor de Serviços).
+Segurança: O uso de APIs como Java Authentication and Authorization Service (JAAS) contribui para a autorização e autenticação de usuários na plataforma Java EE.
+XML: Esse serviço oferece suporte a XML (eXtensible Markup Language), utilizando DOM (Document Object Model), documentos SAX (Simple API for XML) e XSLT (extensible Stylesheet Language Transformations).
+E-mail: Graças a esse componente, torna-se possível a troca de mensagens por meio do Java Message Service (JMS), o serviço de mensagens do Java. Aqui, o uso da API Java Mail permite controlar os e-mails e mensagens enviadas e recebidas com clientes, por meio de diferentes protocolos como IMAP, SMTP e POP.
+Overengineering
+
+Quais as principais vantagens?
+Curioso para saber os grandes benefícios para as organizações e programadores do Java EE e seus componentes? Confira os 4 principais:
+
+#1- Atualização do sistema: Graças à utilização dos componentes corporativos, o programador consegue realizar alterações sem afetar os demais componentes da plataforma.
+
+#2- Independência: Esses componentes possibilitam a independência entre as linguagens utilizadas.
+
+#3- Extensibilidade: Para trazer mais funcionalidades e recursos, é possível remover e adicionar componentes a um aplicativo.
+
+#4- Eficiência: Alguns componentes agregam mais agilidade às telas de apresentação do sistema, tornando o desenvolvimento mais assertivo e ajudando na identificação da lógica e no acesso aos dados.
+
+
+Menu
+VEM PRA ZUP
+Central de Conteúdos
+
+Blog
+Zupcast
+Webinars
+Eventos
+Pesquisar
+Pesquisar
+
+Java EE: entenda a plataforma e principais funcionalidades
+Back-End
+• 8 out 2019
+Antes de mais nada, vamos começar contextualizando brevemente o Java EE, sigla para Java Platform Enterprise Edition (ou, em português, Plataforma Java Edição Empresarial). Ele consiste em uma plataforma de programação para servidores amplamente utilizada e, como o próprio nome já diz, na linguagem Java.
+
+Sua principal utilização é para o desenvolvimento de software em ambientes corporativos, com aplicações como web e rede, além de outros recursos seguros, escaláveis e multicamadas que facilitam muito o nosso dia a dia.
+
+A grande diferença em relação à Plataforma Java Standard Edition, conhecida como Java SE, está na adição de bibliotecas que, por meio das suas funcionalidades, tornam possível implantar software Java multicamada, distribuído e tolerante a erros.
+
+Além disso, essa plataforma é classificada como um padrão de desenvolvimento, uma vez que o fornecedor precisa seguir certas regras para poder declarar os seus produtos compatíveis com esse recurso. Mais um ponto positivo!
+
+Todas essas características fazem com que o Java EE seja bastante usado no desenvolvimento de software para empresas. Separamos neste artigo as principais características, funcionalidades e recursos dessa plataforma para ajudar você, desenvolvedor, a fazer um ótimo trabalho.
+
+Quais as principais funcionalidades do Java EE?
+O Java EE é formado por uma série de contêineres e especificações com diferentes funcionalidades. Listamos abaixo os principais: 
+
+Java Database Connectivity (JDBC): Usado para acessar bancos de dados.
+Enterprise Java Beans (EJBs): Usados para desenvolver componentes de software. Graças a esses recursos, o programador consegue focar sua atenção nas necessidades de cada cliente, porque detalhes como escalabilidade, segurança, disponibilidade e infraestrutura ficam sob responsabilidade do servidor de aplicações.
+Servelets: Esse recurso é usado para desenvolver aplicações web com conteúdo dinâmico. Ele é composto por uma API que tem como objetivo fornecer ao programador os recursos do servidor web de uma forma mais simples e fácil de operar.
+Java Transaction API (JTA): Trata-se de uma API que busca padronizar o tratamento de transações em uma aplicação Java.
+Java Server Pages (JSP): Pode ser conceituado como uma especialização do servlet que possibilita ao programador desenvolver com mais facilidade conteúdos dinâmicos.
+Java Persistence API (JPA): Trata-se de uma API que tem como objetivo padronizar o acesso a banco de dados por meio de um mapeamento Objeto Relacional dos Enterprise Java Beans.
+Java Connector Architecture (JCA): Consiste em uma API que uniformiza a ligação a aplicações legadas.
+Java Server Faces (JSF): Trata-se de uma especificação Java que ajuda o programador na construção de interfaces de usuário a partir de componentes para aplicação em ambiente web.
+Java Message Service (JMS): Por meio desta API para middleware orientada a mensagens, torna-se possível a comunicação entre aplicações de forma assíncrona.
+Servelets Concorrentes no Java EE
+Trabalhar com processamento concorrente pode ser uma necessidade no seu dia a dia. Para isso, iremos mostrar agora o uso da API “Concurrency Utilities for Java EE” com exemplos.
+
+Para executar um certo código de forma assíncrona, ele deve estar presente em uma classe “Runnable” ou “Callable”. Ao realizar essa tarefa, será gerado um identificador.
+
+Essa tarefa, depois de ser enviada para execução, não envia qualquer resultado. Para que isso seja possível, você precisa usar uma classe que implemente a interface “Callable”. Graças a esta classe, um valor randômico de 1 a 10 será devolvido e apresentado depois no HTML, como resultado da chamada de um novo servlet.
+
+Contêineres no Java EE
+Uma das características que nós adoramos no Java EE são seus famosos contêineres, que têm como função abrigar componentes, serviços e APIs a fim de permitir a comunicação entre esses elementos. Esses contêineres são implantados por fornecedores de serviços de aplicativos, sendo necessário um contêiner para cada um dos componentes.
+
+Compartilhamos a seguir os principais serviços oferecidos pelos contêineres.
+
+Serviços de Diretório: Chamado de Java Naming and Directory Interfaces (JNDI), trata-se de uma API que consegue acessar serviços de diretórios. Cada um destes serviços tem que fornecer um Service Provider (Provedor de Serviços).
+Segurança: O uso de APIs como Java Authentication and Authorization Service (JAAS) contribui para a autorização e autenticação de usuários na plataforma Java EE.
+XML: Esse serviço oferece suporte a XML (eXtensible Markup Language), utilizando DOM (Document Object Model), documentos SAX (Simple API for XML) e XSLT (extensible Stylesheet Language Transformations).
+E-mail: Graças a esse componente, torna-se possível a troca de mensagens por meio do Java Message Service (JMS), o serviço de mensagens do Java. Aqui, o uso da API Java Mail permite controlar os e-mails e mensagens enviadas e recebidas com clientes, por meio de diferentes protocolos como IMAP, SMTP e POP.
+Overengineering
+
+Quais as principais vantagens?
+Curioso para saber os grandes benefícios para as organizações e programadores do Java EE e seus componentes? Confira os 4 principais:
+
+#1- Atualização do sistema: Graças à utilização dos componentes corporativos, o programador consegue realizar alterações sem afetar os demais componentes da plataforma.
+
+#2- Independência: Esses componentes possibilitam a independência entre as linguagens utilizadas.
+
+#3- Extensibilidade: Para trazer mais funcionalidades e recursos, é possível remover e adicionar componentes a um aplicativo.
+
+#4- Eficiência: Alguns componentes agregam mais agilidade às telas de apresentação do sistema, tornando o desenvolvimento mais assertivo e ajudando na identificação da lógica e no acesso aos dados.
+
+Quais as camadas na Plataforma Java EE?
+Ele é composto por três tipos de camadas:
+
+#1- Camada de Apresentação: Ela pode ser conceituada como a lógica de apresentação, uma vez que controla as telas a que o usuário tem acesso. Além disso, também é responsável pela interação entre as regras estabelecidas para determinar o modo como o usuário visualiza a página, levando em consideração o perfil do cliente que está utilizando o software.
+
+#2- Camada de Negócio: Também chamada de camada física, a sua finalidade consiste em encapsular a lógica do negócio.
+
+#3- Camada Cliente: Essa camada suporta clientes portáteis, aqueles que acessam por meio de dispositivos móveis e web, permitindo a comunicação através do protocolo HTTP. É aqui que encontram-se vários clientes, como HTML dinâmicos, HTML estático, independentes, Applet Java, clientes não Java e empresas para empresas, entre outros.
+
+Esse modelo multicamadas é perfeito para ambientes empresariais, marcado por diversas interações envolvendo diferentes partes, como funcionários, fornecedores e clientes.
+
+Uma dessas camadas engloba os componentes Web. Você pode desenvolvê-los através de servlets, JSF (JavaServer Faces) ou páginas JSP (JavaServer Pages). Dessa forma, o usuário do software consegue interagir e visualizar o sistema, mas sem que as regras de negócio sejam processadas e implementadas.
+
+Isso acontece porque as regras são determinadas em outra camada, através de frameworks e APIs, implantados em EJBs (Enterprise JavaBeans).
+
+
 ## TypeScript 4.0 
+
+O TypeScript começou a ser desenvolvido pela Microsoft em 2012, com o objetivo de adicionar recursos e ferramentas que não estão presentes nativamente na linguagem (ou que seriam muito mais complexos de serem implementados), como tipagem estática (ou seja, os tipos das variáveis são definidos explicitamente no código) e orientação a objetos.
+
+Por isso, ele não é usualmente considerado como uma nova linguagem de programação, mas sim como um superconjunto de JavaScript, pois o código é “transformado” (no termo técnico: transcompilado) em JavaScript “puro” antes de ser executado.
+
+Um arquivo TypeScript geralmente tem a extensão “.ts”. Por, no fundo, ainda ser JavaScript, qualquer código nativo da linguagem pode ser adicionado em um arquivo desse formato, e programas escritos em JavaScript também podem ser considerados programas TypeScript válidos. Há, também, suporte a várias bibliotecas JavaScript populares, como Angular, Vue.js, D3.js, entre outras.
+
+Sites e aplicativos criados com TypeScript podem ser executados tanto no lado do cliente (diretamente no navegador do usuário, por exemplo) quanto no lado do servidor (com Node.js). O próprio compilador TypeScript padrão foi escrito em TypeScript e transcompilado para JavaScript.
+
+
+Tecnoblog
+Início » Aplicativos e Software » O que é TypeScript? [Guia para iniciantes]
+O que é TypeScript? [Guia para iniciantes]
+Saiba o que é TypeScript, quando foi criado e quais recursos e vantagens a linguagem adiciona ao JavaScript tradicional
+Avatar de Diego MeloPor Diego Melo
+30/03/2021 às 18:55
+TypeScript é um superconjunto de JavaScript, ou seja, um conjunto de ferramentas e formas mais eficientes de escrever código JavaScript, adicionando recursos que não estão presentes de maneira nativa na linguagem. Saiba mais sobre TypeScript, suas principais vantagens e como utilizá-lo em seus projetos.
+
+
+O que é JavaScript? [Guia para iniciantes]
+Como usar o GitHub? [Guia para Iniciantes]
+
+O que é TypeScript? / James Harrison / Unsplash
+TypeScript é um superconjunto de JavaScript (Imagem: James Harrison/Unsplash)
+
+O que é TypeScript?
+O TypeScript começou a ser desenvolvido pela Microsoft em 2012, com o objetivo de adicionar recursos e ferramentas que não estão presentes nativamente na linguagem (ou que seriam muito mais complexos de serem implementados), como tipagem estática (ou seja, os tipos das variáveis são definidos explicitamente no código) e orientação a objetos.
+
+Por isso, ele não é usualmente considerado como uma nova linguagem de programação, mas sim como um superconjunto de JavaScript, pois o código é “transformado” (no termo técnico: transcompilado) em JavaScript “puro” antes de ser executado.
+
+
+Um arquivo TypeScript geralmente tem a extensão “.ts”. Por, no fundo, ainda ser JavaScript, qualquer código nativo da linguagem pode ser adicionado em um arquivo desse formato, e programas escritos em JavaScript também podem ser considerados programas TypeScript válidos. Há, também, suporte a várias bibliotecas JavaScript populares, como Angular, Vue.js, D3.js, entre outras.
+
+Sites e aplicativos criados com TypeScript podem ser executados tanto no lado do cliente (diretamente no navegador do usuário, por exemplo) quanto no lado do servidor (com Node.js). O próprio compilador TypeScript padrão foi escrito em TypeScript e transcompilado para JavaScript.
+
+
+O que é TypeScript? / Reprodução
+Página oficial do projeto (Imagem: Reprodução)
+
+
+Como funciona?
+Código TypeScript pode ser escrito em qualquer ambiente de desenvolvimento. No entanto, para transformá-lo em JavaScript e aproveitar outros recursos úteis, como checagem de erros, é necessário instalá-lo no computador via NPM (um gerenciador de pacotes JavaScript) ou usar uma IDE com suporte nativo ao superconjunto, como o Visual Studio. Também é possível usar TypeScript com outros compiladores que suportam a linguagem, como Babel, swc ou Sucrase.
+
+Veja abaixo um exemplo de código TypeScript envolvendo encapsulamento, um conceito de orientação a abjetos que dá visibilidade e acessibilidade a elementos internos de uma classe. Nesse caso, a declaração de uma variável de saldo, do tipo “number”, é acessível pelo método “Saldo()”.
+
+` 
+private _saldo: number;
+get Saldo(): number { return this._saldo; }
+`
+
+Principais vantagens
+A principal vantagem do TypeScript em relação ao JavaScript “tradicional” é adicionar recursos importantes e úteis para a construção de projetos em larga escala, como tipagem estática, forte e automática, orientação a objetos e a possibilidade de descobrir e corrigir erros em tempo real durante o desenvolvimento.
+
+Apesar de ter sido criado pela Microsoft, o TypeScript é um projeto de código-aberto, com intensa participação da comunidade. Você pode saber mais sobre a linguagem, ler a documentação e testar sua utilização diretamente no navegador pelo site oficial.
+
+
 ## Python 3.9.X aplicada para IA/ML e Analytics 
 ### Pandas
 ### NumPy 
