@@ -1,17 +1,16 @@
 import { Box, chakra, Flex, SimpleGrid, Stat, StatLabel, StatNumber, useColorModeValue } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
-import { BsPerson } from 'react-icons/bs';
-import { FiServer } from 'react-icons/fi';
-import { GoLocation } from 'react-icons/go';
+import { BsCalendar } from 'react-icons/bs';
 interface StatsCardProps {
     title: string;
     stat: string;
     subtitulo: string;
+    dataLimite: string;
     icon: ReactNode;
   }
 
   function StatsCard(props: StatsCardProps) {
-    const { title, stat, subtitulo, icon } = props;
+    const { title, stat, subtitulo, dataLimite, icon } = props;
     return (
       <Stat
         px={{ base: 2, md: 4 }}
@@ -30,6 +29,9 @@ interface StatsCardProps {
             </StatNumber>
             <StatLabel fontWeight={'medium'} isTruncated>
               {subtitulo}
+            </StatLabel>
+            <StatLabel fontWeight={'medium'} isTruncated>
+              em {dataLimite}
             </StatLabel>
           </Box>
           <Box
@@ -74,9 +76,10 @@ const BarraEstatistica = () => {
 
             <StatsCard
               title={'Faltam'}
-              stat={calculateTimeLeft(7,28)["days"]}
+              stat={calculateTimeLeft(8,7)["days"]}
               subtitulo={'dias para o término das inscrições'}
-              icon={<BsPerson size={'3em'} />}
+              dataLimite={'07/08/2021'}
+              icon={<BsCalendar size={'3em'} />}
             />
 
             
@@ -84,7 +87,8 @@ const BarraEstatistica = () => {
               title={'Faltam'}
               stat={calculateTimeLeft(9,26)["days"]}
               subtitulo={'dias para a prova do concurso'}
-              icon={<BsPerson size={'3em'} />}
+              dataLimite={'26/09/2021'}
+              icon={<BsCalendar size={'3em'} />}
             />
           </SimpleGrid>
         </Box>
