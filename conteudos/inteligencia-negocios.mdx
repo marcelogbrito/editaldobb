@@ -10,3 +10,123 @@ date: "Jul 21, 2021"
 ---
 
 # Visão geral sobre sistemas de suporte à decisão e inteligência de negócio
+
+Sistemas de apoio à decisão (em inglês, Decision Support Systems) é uma classe de Sistemas de Informação ou Sistemas baseados em Conhecimento. Refere-se simplesmente a um modelo genérico de tomada de decisão que analisa um grande número de variáveis para que seja possível o posicionamento a uma determinada questão [1].
+
+Decisão é uma escolha entre as alternativas existentes através de estimativas dos pesos destas alternativas. Apoio à decisão significa auxiliar nesta escolha gerando estas estimativas, a evolução ou comparação e escolha. O termo sistema de apoio à decisão tem sido utilizado de diferentes formas (após a década de 80) e tem recebido diferentes definições de acordo com o ponto de vista de cada autor. Finlay (1994) e outros autores definem o SAD de um modo geral como “um sistema computacional que auxilia o processo de tomada de decisão”. Turban (1995) define mais especificamente como “um interativo, flexível e adaptável sistema de informação, especialmente desenvolvido para apoiar a solução de um problema gerencial não estruturado para aperfeiçoar a tomada de decisão. Utiliza dados, provê uma interface amigável e permite ao tomador de decisão ter sua própria percepção”.
+
+Existe uma outra definição que se encontra entre estes dois extremos. Para Keen e Scott Morton (1978), um SAD concilia os recursos intelectuais individuais com a capacidade do computador em melhorar a qualidade da decisão (“SAD são sistemas computacionais que apóiam os gerentes tomadores de decisão que são direcionados com problemas semi-estruturados”). Para Sprague e Carlson (1982), SAD são “sistemas computacionais interativos que auxiliam os tomadores de decisão utilizarem dados e modelos solucionados de problemas não-estruturados”.
+
+Em contraste, Keen (1980) diz que é impossível dar uma definição precisa incluindo todas as facetas do SAD (“Não há definição de sistemas de apoio à decisão, somente de apoio à decisão”). No entanto, de acordo com Power (1997), o termo sistema de apoio à decisão é muito desgastado devido à sua utilização para definir muitos tipos de sistemas que dão apoio à tomada de decisão. Ele ironicamente diz que muitas vezes nem sempre um sistema computadorizado é um sistema transacional on-line (OLTP), algumas vezes você será tentado em chamá-lo de um SAD. Como podemos ver, não há uma definição universal aceita de SAD.
+
+Um breve Histórico do SAD
+Com a ausência de uma definição de total abrangência pode-se ter um maior entendimento sobre SAD através do seu histórico. De acordo com Keen e Scott Morton (1978), os conceitos de apoio à tomada de decisão envolvem duas grandes áreas de pesquisa: o estudo teórico da tomada de decisões nas organizações, realizado no Instituto de Tecnologia de Carnegie no fim dos anos 50 e início dos anos 60, e os trabalhos técnicos em sistemas computacionais interativos, realizados pelo MIT (Instituto de Tecnologia de Massachusetts) nos anos 60.
+
+É considerado que o conceito de SAD tornou-se uma área de pesquisa em meados dos anos 70, sendo estudado intensamente antes do início dos anos 80. Em meados e final dos anos 80, iniciou o estudo dos sistemas de informação executiva (EIS), sistemas de apoio à decisão em grupo (GDSS) e sistemas de apoio à decisão organizacionais (ODSS) envolvendo um único usuário e o SAD orientado à modelagem.
+
+No início dos anos 90, começaram a surgir a partir do SAD os conceitos de data warehouse e processamento analítico on-line (OLAP). Com a virada do milênio aproximando, novas aplicações analíticas baseadas na web foram introduzidas. É claro que SAD pertence a um ambiente com fundamentos multidisciplinares, incluindo (mas não exclusivamente) pesquisas de banco de dados, inteligência artificial, interação homem-máquina, métodos de simulação, engenharia de software e telecomunicações.
+
+SAD também tem uma conexão com o paradigma de interface do hipertexto. Ambos os sistemas PROMIS (para tomada de decisões médicas) da Universidade de Vermont e ZOG/KMS de Carnegie (para tomada de decisões militares e comerciais) eram sistemas de apoio à decisão com o maior aprofundamento de pesquisa em interface com o usuário. Além disso, apesar das pesquisas com hipertextos ter geralmente sido concentradas com a sobrecarga da informação, certas pesquisas, como a de Douglas Engelbart, tem tido o foco de auxiliar tomadores de decisão em particular.
+
+Taxonomia
+Como com a definição, não há uma taxonomia totalmente aceita de SAD. Diferentes autores possuem propostas de classificação. Usando o relacionamento com o usuário como um critério, Hättenschwiller (1999) diferencia como SAD passivo, ativo, e cooperativo. Um SAD passivo é um sistema que auxilia o processo de tomada de decisão, mas não traz explicitamente sugestões ou soluções. Um SAD ativo pode trazer sugestões ou soluções para o problema apresentado. Um SAD cooperativo apresenta para o tomador de decisão (que atua como um conselheiro) as opções de modificar, completar, ou refinar as sugestões apresentadas por outros colaboradores, para que estas sugestões sejam validadas. O sistema realizará a validação das sugestões até que uma solução consolidada seja gerada. Usando o modo de assistência com critério, Power (2002) classifica em communication-driven DSS, data-driven DSS, document-driven DSS, knowledge-driven DSS, e model-driven DSS.
+
+1.Um SAD model-driven enfatiza o acesso e manipulação estatístico, financeiro, otimizado, ou modelo de simulação. Utiliza-se dados e parâmetros providos pelos usuários para assistir a tomada de decisão analisando uma situação; não há necessidade um grande volume de dados.
+
+2.Um SAD communication-driven auxilia mais de uma pessoa trabalhando em tarefas compartilhadas;
+
+3.Um SAD data-driven gerencia, recupera e manipula informações não-estruturadas em uma variedade de formatos de armazenamento.
+
+4.Um SAD knowledge-driven provê especialização na solução do problema através de conhecimentos armazenados como fatos, regras, procedimentos ou estruturas similares;
+
+5.Um SAD tradeoff-driven é um sistema de apoio à decisão (possivelmente colaborativo) que provê a tomada de decisão envolvendo trade-offs entre diferentes vantagens e desvantagens, usando o conhecimento armazenado. Usando o escopo como critério, Power (1997) classifica como SAD Empresarial e SAD Desktop. Um SAD Empresarial é ligado a um grande data warehouse e servidores de muitos gerentes em uma companhia. Um SAD Desktop é um sistema pequeno que roda para um gerente em um PC.
+
+Arquiteturas
+Mais uma vez, diferentes autores identificam diferentes componentes em um SAD. Sprage e Carlson (1982) identificam três componentes fundamentais de um SAD:
+
+- Sistema Gerenciador de Banco de Dados (SGBD);
+
+- Sistema Gerenciador de Modelagem Básica (MBMS);
+
+- Sistema de Geração de Diálogo e Gerenciamento (DGMS);
+
+Haag at al. (2000) descreve estes três componentes em maior detalhe: o Gerenciador de Dados armazena a informação (que pode ser um repositório organizacional tradicional; remoto, com a utilização da internet para acesso, ou personalizado para cada usuário); o Gerenciador de Modelagem que faz a representação de eventos, fatos ou situações (usando vários tipos de modelos, dois exemplos são modelos de otimização e modelos goal-seeking); e o Gerenciador de Interface com o Usuário que é claro que melhora a interatividade do usuário com o sistema.
+
+Conforme Power (2002), tem se estudado a construção de um SAD com quatro componentes:
+
+- Interface com o usuário;
+
+- Banco de Dados;
+
+- Modelagem e ferramentas analíticas;
+
+- Arquitetura e rede de trabalho de SAD;
+
+Hättenschwiler (1999) identifica cinco componentes de um SAD:
+
+- Usuários com diferentes regras de negócio e funções no processo de tomada de decisão;
+
+- Um específico e definido contexto de decisão;
+
+- Um sistema objetivo descrevendo as preferências principais;
+
+- Uma base de conhecimento que é composta de informações, base de conhecimento, programas administrativos e sistemas geradores de relatórios;
+
+- Um trabalho de preparação do ambiente, análise e documentação das alternativas de decisão.
+
+Marakas (1999) propõe uma arquitetura generalizada que será composta por cinco distintas partes:
+
+- Um sistema gerenciador de banco de dados;
+
+- Um sistema gerenciador de modelagem;
+
+- Uma engenharia de conhecimento;
+
+- Uma interface com o usuário;
+
+- O usuário.
+
+Existem vários meios de se classificar aplicações SAD. Nem sempre um SAD se adequa dentro de uma destas categorias, mas em misto de uma ou mais categorias.
+
+Holsapple e Whinston (1996) classificam os SAD dentro de seis frameworks:
+
+- SAD orientado ao contexto;
+
+- SAD orientado ao banco de dados;
+
+- SAD orientado à Spreadsheet;
+
+- SAD orientado à solução;
+
+- SAD orientado às regras de negócio;
+
+- SAD complexos;
+
+Um SAD complexo é a classificação mais comum para um SAD, pois é um sistema híbrido e pode incluir duas ou mais das cinco estruturas básicas descritas por Holsapple e Whinston (1996).
+
+O suporte dado pelo SAD é também classificado dentro de algumas características:
+
+- Entradas: usadas para atribuir ao SAD fatos, números e características para serem analisadas;
+
+Conhecimento do usuário e conhecimento prévio: aprimora o sistema para decidir qual melhor solução, quais entradas devem ser analisadas com ou sem o usuário;
+
+- Saídas: usada pelo usuário do sistema afim deste poder analisar as decisões que devem ser feitas e quais são as em potencial;
+
+- Tomada de decisão: quando a tomada de decisão é realizada pelo SAD, de qualquer maneira, o usuário deve realizar a tomada de decisão a partir de uma classificação ordenando os resultados com um critério próprio do usuário. SAD’s com a capacidade de classificação cognitiva nas funções de tomada de decisão e baseados em inteligência artificial ou tecnologias agentes de inteligência são chamados de Sistemas Inteligentes de apoio à Decisão (SIAD).
+
+Aplicações
+Como mencionado acima, há várias possibilidades de teoricamente construir um sistema em qualquer área do conhecimento. Um dos exemplos é Sistema de Apoio à Decisão para Diagnósticos Médicos. Outros exemplos incluem uma financiadora que verifica o crédito de um solicitador de crédito ou de uma firma de engenharia que tem um grande projeto e quer saber se podem ser competitivos com os atuais custos.
+
+Uma aplicação, princípios e técnicas em ascensão na área de SAD são na produção agrícola, comercialização e sustentabilidade do desenvolvimento agrícola. Por exemplo, o pacote DSSAT4 desenvolveu e financiou o USAID durante os anos 80 e 90, e tem aumentado a qualidade em sistemas de produção agrícola em todo o mundo e facilitando a tomada de decisão em fazendas. Um outro exemplo específico concentra-se no sistema nacional de ferrovias do Canadá, com testes nos equipamentos utilizando o SAD. Um problema encontrado em qualquer ferrovia está no desencaixe ou defeitos nos trilhos, que podem causar centenas de descarrilamentos por ano. Com um SAD, a CN verificou a redução dos incidentes de descarrilamentos no mesmo período em que outras companhias tiveram um expressivo aumento.
+
+SAD tem muitas aplicações que podem ser ainda descobertas, portanto, pode ser utilizado em qualquer campo em uma organização, como para auxiliar a tomada de decisão em estoques, ou decidir qual fatia de mercado uma linha de produtos deve seguir
+
+Um exemplo de aplicação é o programa Risco Cirúrgico MED, avalia tanto o risco cardiológico e risco pulmonar como outros, facilitando a elaboração do laudo pré-operatório para o clínico ou cardiologista. O Risco Cirúrgico MED é um software que permite a padronização deste procedimento médico. Utilizando as tabelas de EMAPO, ACP (American College Physicians), Goldman, ASA, Detsky, Larsen e Lee, possibilita uma rápida emissão do laudo de risco cirúrgico sendo este completamente personalizado.
+
+O que é a inteligência de negócios?
+A inteligência de negócios (BI) é uma maneira de revelar insights acionáveis em seus dados, descobrir o que aconteceu e, em seguida, explorar por que isso aconteceu. Esses insights podem ser usados para definir ou mudar o caminho de seus negócios. 
+
+Ao entender o 'porquê', torna-se simples diferenciar os fatores de seus negócios que são úteis e os que não são.
+
+As ferramentas e a tecnologia de BI fornecem o poder de coletar, organizar e analisar rapidamente seus dados. A partir daí, é possível aplicar os insights obtidos aos seus negócios e melhorar drasticamente seus resultados.
+
