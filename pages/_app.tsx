@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, useColorMode } from '@chakra-ui/react';
 
 import theme from '../styles/theme'
 import { AppProps } from 'next/app'
