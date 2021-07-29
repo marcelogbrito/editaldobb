@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Button, Text ,Collapse, Flex, Icon, IconButton, Link, Popover, PopoverContent, PopoverTrigger, Stack, useColorModeValue, useDisclosure, useBreakpointValue } from '@chakra-ui/react';
 import React from 'react';
+import { FaGithub } from "react-icons/fa";
 
 const BarraNavegacao = () => {
     const { isOpen, onToggle } = useDisclosure()
@@ -44,7 +45,12 @@ const BarraNavegacao = () => {
               <DesktopNav />
             </Flex>
           </Flex>
-  
+              <Flex>
+              <Link href="https://github.com/marcelogbrito/editaldobb" isExternal mr={5}>
+              <FaGithub fontSize="2rem"/>
+    </Link>
+                <a href=""><i className="fa fa-github" aria-hidden="true"></i></a> 
+              </Flex>
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={'flex-end'}
@@ -141,12 +147,12 @@ const DesktopNav = () => {
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        _hover={{ bg: useColorModeValue('teal.50', 'gray.900') }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
               transition={'all .3s ease'}
-              _groupHover={{ color: 'pink.400' }}
+              _groupHover={{ color: 'teal.400' }}
               fontWeight={500}>
               {label}
             </Text>
@@ -160,7 +166,7 @@ const DesktopNav = () => {
             justify={'flex-end'}
             align={'center'}
             flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'teal.400'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Link>
