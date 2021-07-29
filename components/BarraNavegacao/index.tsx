@@ -46,7 +46,7 @@ const BarraNavegacao = () => {
             </Flex>
           </Flex>
               <Flex>
-              <Link href="https://github.com/marcelogbrito/editaldobb" isExternal mr={5}>
+              <Link href="https://github.com/marcelogbrito/editaldobb" isExternal mx={5}>
               <FaGithub fontSize="2rem"/>
     </Link>
                 <a href=""><i className="fa fa-github" aria-hidden="true"></i></a> 
