@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import { getAllPostsPath, getPostData } from '../../lib/getPostsData.js';
-import { Box, Container, Link, VStack } from '@chakra-ui/react';
+import { Box, Container, Flex, Link, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import Layout from '../../components/Layout';
@@ -9,13 +9,11 @@ import Layout from '../../components/Layout';
 const components = {
     h1: props => <h1 style = {{ 
         fontSize: 'calc(1rem + 1.5vw)', 
-        color: 'black',
         margin: '1vh 0 1vh 0', }} 
         {...props} />,
 
     p: props => <p style = {{ 
         fontSize: 'calc(1rem + 0.1vw)', 
-        color: '#000000e6',
         margin: '0vh 0 1vh 0' }} 
         {...props} />,
 }
@@ -27,11 +25,16 @@ export default function Blog({ postMetadata, postContent, id }) {
         <Layout>
 
         <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+        <Container maxW="container.lg">
         <MDXRemote {...postContent} components={components} />
+        </Container>
+        
       </VStack>
+      <Flex justifyContent="center" mt={10}>
       <Link href={linkGitHub} isExternal>
-      Nos ajude a melhorar este conteúdo! Edite esse conteúdo no Github <ExternalLinkIcon mx="2px" />
+      Ajude a melhorar este conteúdo! Edite no Github <ExternalLinkIcon mx="2px" />
     </Link>
+    </Flex>
     </Layout>
         </>
  
