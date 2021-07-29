@@ -9,8 +9,7 @@ export default class Document extends NextDocument {
         <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" />
         <Head />
         <body>
-          {/* Make Color mode to persists when you refresh the page. */}
-          <ColorModeScript />
+          
           <Main />
           <NextScript />
         </body>
