@@ -69,7 +69,7 @@ const BarraEstatistica = () => {
             fontSize={'4xl'}
             py={10}
             fontWeight={'bold'}>
-            Prazos
+            Avisos
           </chakra.h1>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
 
