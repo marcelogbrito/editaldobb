@@ -10,3 +10,120 @@ date: "Jul 21, 2021"
 ---
 
 # Sistema de pagamentos instantâneos (PIX)
+
+O Pix é um meio de realizar pagamentos, compras e transferências em tempo real.
+
+Com ele, é possível realizar transações de forma rápida e segura, em qualquer horário e dia do ano e com o valor disponível imediatamente na conta do recebedor.
+
+As transações podem ser feitas eletronicamente, 24 horas por dia, 7 dias por semana (inclusive feriados) e o valor entra na conta do favorecido de forma instantânea, em qualquer instituição financeira participante do Pix.
+
+O Pix agrega praticidade, pois a transação pode ser efetivada por meio da leitura de um QR Code ou, simplesmente, informando  uma Chave Pix - que pode ser número do celular, e-mail ou CPF/CNPJ do destinatário.
+
+é possivel tambem  fazer a inserção manual dos dados bancários, do mesmo jeito que acontece ao enviar uma TED
+
+1. disponibilidade
+É possível realizar operações 24 horas por dia, inclusive em fins de semana e feriados.
+
+2. velocidade
+A transação ocorre normalmente em tempo real, sendo concluída de forma instantânea.
+
+3. Conveniencia
+As transações são realizadas de forma simples e intuitiva, prezando a experiência do usuário.
+
+4. segurança
+O Bacen estipulou uma série de requisitos mínimos que são necessários, garantindo que o Pix mantenha o nível de segurança que há nas transações tradicionais.
+
+5. ambiente aberto
+O Pix pode ser feito em bancos, em instituições não vinculadas ao SFN, em fintechs e afins, desde que tenham aderido ao SPI.
+
+6. Multiplicidade de casos de uso
+Com o Pix, é possível realizar transferências entre pessoas, empresas e/ou entes públicos, além de realizar pagamentos em estabelecimentos físicos ou virtuais e dos recolhimentos de tributos municipais, estaduais ou federais.
+
+7. praticidade
+Com o Pix, é possível realizar operações por QR Code, além de permitir o uso de chaves Pix (também chamadas de apelidos). Dessa forma, não há necessidade de preencher dados bancários em cada transação. Mas, aqui, cabe chamar a atenção para um detalhe: a chave será atrelada a um único conjunto de informações de banco, agência e conta.
+
+8. Custos
+Há redução nos custos das transações de pagamentos e transferências e, com isso, a redução de transações em dinheiro. Afinal, estas representam grande risco para os pagadores e recebedores e são as mais onerosas, por envolverem transporte e disponibilização de numerário.
+
+Participantes
+
+Pagador: usuario final que, no processamento do Pix, tem a sua conta transacional debitada.
+
+Participante direto: bancos e todas instituições financeiras que tem Contas PI (Pagamentos Instantaneos) no Banco Central e que estão conectadas à infraestrutura de liquidação.
+
+Participante indireto: Fintechs, instituições financeiras e de pagamentos e outras instituições que não tem conta PI no Banco Central, sendo necessário um participante direto para realizar as liquidações.
+
+Banco Central (BACEN) : é o centralizador que fornece infraestrutura unica de liquidação
+
+Recebedor: usuário final que no processamento do PIX tem a sua conta transacional creditada
+
+### SPI 
+
+O Sistema de Pagamentos Instantâneos (SPI) é a infraestrutura centralizada de liquidação bruta em tempo real das transações realizadas no âmbito de arranjo de pagamentos instantâneos que resultam em transferências de valores entre os Participantes Diretos. É gerido pelo Banco Central.
+
+### Requisitos para utilizar
+ necessário que o pagador e o recebedor tenham uma conta em uma instituição participante do Pix. Essa instituição pertencente ao SPI pode ser um banco, uma instituição de pagamento ou uma fintech, que ofereça uma conta para o recebimento de fundos instantaneamente. Essa conta pode ser conta corrente, conta poupança ou até mesmo conta de pagamento pré-paga. O Pix possibilita ainda a iniciação de pagamento sem a necessidade ou obrigatoriedade de cadastro/adesão prévio para realizar pagamento ou receber.
+
+ ### Limite transacional
+
+ O Banco Central não determina limites de valor para as transações, apenas estabelece que não podem ser inferiores aos concedidos para outros instrumentos de pagamento. Eles serão definidos por cada instituição, podendo, inclusive, variar de acordo com o horário em que a transação for feita.
+
+ ### Carteiras digitais
+ são aplicativos onde se guarda dinheiro para pagar contas, fazer transferências para um amigo e até receber recompensas de programas de cashback.
+O Pix é uma das maneiras de movimentar essa carteira, só que não se restringe a ela, pois com o Pix você pode movimentar sua conta corrente, conta poupança, conta fácil... enfim, é uma solução ilimitada.
+
+### Como registrar uma chave Pix?
+O cliente cria uma chave Pix (apelido), que é registrada na base do Banco Central – DICT. Nesse cadastramento são vinculados sua instituição financeira, agência, número e tipo de conta, quando alguém for fazer uma transferência para essa pessoa, basta inserir a chave informada (como um número de celular, por exemplo), que a informação será checada na base de endereçamento do Bacen.
+
+### chaves
+Caso o usuário realize o cadastro do CPF/CNPJ, a chave informada deve ser o CPF/CNPJ do titular da conta, que é confirmada na base de dados da Receita Federal por meio do cadastro do usuário final no próprio PSP.
+
+Em casos de endereço de e-mail e número de telefone celular, este receberá um código com a confirmação do usuário.
+
+Esse retorno deve ser efetivado em canal de acesso disponibilizado pelo PSP do usuário e confirmado por meio de autenticação digital.
+
+Quando um usuário:
+
+trocar seu número de celular ou endereço de e-mail, ele pode registrar a alteração da chave anterior e registrar nova chave, com dados atualizados. Sendo possível também apenas a exclusão, caso seja seu desejo.
+tentar registrar uma chave e for informado que ela já está registrada para outra pessoa, ele deve abrir um processo de reivindicação de posse e o atual dono deve se manifestar em até 7 dias.
+Caso não haja essa manifestação, a chave migra automaticamente para quem a reivindicou.
+
+O usuário pode, ainda, solicitar portabilidade da chave para outro participante do arranjo.
+
+Outra opção é a chave aleatória, um tipo de chave sem ligação direta com os dados pessoais do recebedor, garantindo sua privacidade. Trata-se de um número hexadecimal gerado pelo DICT.
+
+recebendo pagamentos
+
+De forma simples e rápida, o usuário que quiser receber um Pix deverá informar uma das suas chaves Pix ao pagador. Se preferir, pode optar por gerar um QR Code para enviar para ele. E quando a transação for efetuada, receberá um alerta com a confirmação do crédito.
+
+QR Code Estático
+Permitido o uso em diversas transações.
+É possível definir um valor fixo para um produto, ou até mesmo a inserção de um valor pelo pagador.
+Usado por pequenos varejistas, prestadores de serviços e pessoa física.
+Pode ser utilizado para transferência para duas pessoas ou mais.
+
+QR Code Dinâmico
+Exclusividade em cada transação.
+É possível inserir informações do valor e de identificação do recebedor.
+Possui diversas transações.
+Facilita a conciliação e a automação comercial.
+
+ há uma terceira opção para transmissão da informação: é a geração de link, que será disponibilizada nas etapas futuras de implantação.
+
+Geração de link é indicada para situações em que o pagador está utilizando o telefone celular para efetuar a transferência para o recebedor. Com o link, é possível permitir que as informações de pagamento do recebedor sejam disponibilizadas sem a necessidade de leitura de um QR Code
+
+Atenção!
+Nenhuma das opções citadas anteriormente exclui a possibilidade de envio e recebimento de Pix por meio da inserção manual dos dados usados em uma transferência usual, como, por exemplo, a TED e o DOC.
+
+E se o cliente desejar cancelar uma transação, será possível?
+É possível alterar o valor a ser pago ou cancelar uma transação somente antes da liquidação. Após a confirmação de que foi efetuada, não é mais possível.
+
+No entanto, a devolução é uma funcionalidade disponível no Pix. Basta negociar com o recebedor, que é quem possui a opção de iniciar o processo de devolução do valor pago.
+
+Qual é o prazo para solicitar a devolução?
+O prazo para o usuário solicitar a devolução é de até 90 dias, a partir da transação de pagamento original. E podem ser solicitadas várias devoluções para uma mesma transação, desde que o valor de cada transação não ultrapasse o montante do valor de pagamento original.
+
+Sendo assim, é possível devolver uma transação com um valor diferente do valor da transação original.
+
+
+

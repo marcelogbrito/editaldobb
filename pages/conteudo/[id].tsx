@@ -12,11 +12,11 @@ const components = {
         margin: '1vh 0 1vh 0', }} 
         {...props} />,
         h2: props => <h2 style = {{ 
-            fontSize: 'calc(0.7rem + 1.2vw)', 
+            fontSize: 'calc(1rem + 1.2vw)', 
             margin: '1vh 0 1vh 0', }} 
             {...props} />,
             h3: props => <h3 style = {{ 
-                fontSize: 'calc(0.5rem + 0.8vw)', 
+                fontSize: 'calc(1rem + 1vw)', 
                 margin: '1vh 0 1vh 0', }} 
                 {...props} />,
 
